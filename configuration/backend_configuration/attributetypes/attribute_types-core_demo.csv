@@ -4,4 +4,3 @@ aac48226-d143-4274-80e0-264db4e368ee,,Visit,Insurance Policy Number,,0,1,org.ope
 3a988e33-a6c0-4b76-b924-01abb998944b,,Visit,Insurance Scheme,"The insurance scheme the patient is using to settle payment for services, expects a uuid",0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
 8553afa0-bdb9-4d3c-8a98-05fa9350aa85,,Visit,Payment Method,"The payment method used by the patient to settle payment, expects a uuid",0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
 fbc0702d-b4c9-4968-be63-af8ad3ad6239,,Visit,Patient Type,"If the patient will be paying or receives services for free, expects a uuid",0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
-9eca4f4e-707f-4bb8-8289-2f9b6e93803c,,Location,Location ISO Code,"Location ISO Code's description",1,10,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
