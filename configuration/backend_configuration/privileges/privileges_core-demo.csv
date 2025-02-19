@@ -3,19 +3,19 @@ Uuid,Privilege name,Description,_order:1000
 f47ac43d-2328-4f0e-948d-88062e0d6345,Manage Cohort Definitions,Add/Edit/Remove Cohort Definitions,
 35360a98-eebf-4cc0-812d-80b6025cfea3,Manage Order Set Attribute Types,Able to add/edit/retire order set attribute types,
 e2b4b047-e595-4456-8ae1-8c16c4f23adc,Get Diagnoses Attribute Types,Able to get diagnoses attribute types,
-bfc2eca6-fa0a-4700-b5ba-3bbe5a44413d,Get Order Set Attribute Types,Able to get order set attribute types
-eba24ae0-d3e3-4083-84bf-5c4d7eb97e3d,Task: dispensing.create.dispense,Allows user to Dispense Medication
-58f14517-6635-42d3-b1ca-99f464eaea2b,Task: dispensing.create.dispense.allowSubstitutions,"Allows user to modify the Quantity, Drug, Formulation and Dose Instructions when Dispensing"
-cde0218e-c3e8-465a-85fd-ef478abbb696,Task: dispensing.edit.dispense,Allows user to edit an existing Medication Dispense
-d0e540c6-619b-4943-9431-fd1fbf494d74,Task: dispensing.delete.dispense,Allows user to delete an existing Medication Dispense
-3c788e2a-a1ec-442a-a1ed-f5d27d8392b5,Task: dispensing.delete.dispense.ifCreator,"Allows user to delete an existing Medication Dispense, *but only* if they created it originally"
+bfc2eca6-fa0a-4700-b5ba-3bbe5a44413d,Get Order Set Attribute Types,Able to get order set attribute types,
+eba24ae0-d3e3-4083-84bf-5c4d7eb97e3d,Task: dispensing.create.dispense,Allows user to Dispense Medication,
+58f14517-6635-42d3-b1ca-99f464eaea2b,Task: dispensing.create.dispense.allowSubstitutions,"Allows user to modify the Quantity, Drug, Formulation and Dose Instructions when Dispensing",
+cde0218e-c3e8-465a-85fd-ef478abbb696,Task: dispensing.edit.dispense,Allows user to edit an existing Medication Dispense,
+d0e540c6-619b-4943-9431-fd1fbf494d74,Task: dispensing.delete.dispense,Allows user to delete an existing Medication Dispense,
+3c788e2a-a1ec-442a-a1ed-f5d27d8392b5,Task: dispensing.delete.dispense.ifCreator,"Allows user to delete an existing Medication Dispense, *but only* if they created it originally",
 bfd21c4f-008d-49f4-b96b-db14cb949c0f,Manage Metadata Mapping,Able to manage metadata mappings,
 142ecdca-d3a8-11ed-afa1-0242ac120002,View Metadata Via Mapping,Able to view metadata via a mapping,
 3f88daf3-f8c0-4be0-bd56-a58c918f02f6,Share Metadata,Allows user to export and import metadata,
 4d585f07-cabf-4d1a-97a2-a2eb74e68347,Manage Address Hierarchy,Allows user to access/modify the defined address hierarchy,
-d23f430d-570c-41ac-bddd-ac1057e2fd21,Manage RESTWS,Allows to configure RESTWS module
-16e12803-57bf-419a-8d17-9854db93674b,View RESTWS,Gives access to RESTWS in administration
-d2f70c2b-077a-4dae-b108-5ab78fc28ba5,Manage OWA,"Allows to configure OWA module, upload modules"
+d23f430d-570c-41ac-bddd-ac1057e2fd21,Manage RESTWS,Allows to configure RESTWS module,
+16e12803-57bf-419a-8d17-9854db93674b,View RESTWS,Gives access to RESTWS in administration,
+d2f70c2b-077a-4dae-b108-5ab78fc28ba5,Manage OWA,"Allows to configure OWA module, upload modules",
 f35d498f-9bbf-40df-a2b8-bcb4cebd1ec4,Manage Identifier Sources,"Allows user add, edit, and remove identifier sources",
 95f24ca5-4385-4d97-8b50-5b088370fb16,Manage Auto Generation Options,"Allows user add, edit, and remove auto-generation options",
 da26202b-950d-4f97-a12d-1401827f6c60,Generate Batch of Identifiers,Allows user to generate a batch of identifiers to a file for offline use,
