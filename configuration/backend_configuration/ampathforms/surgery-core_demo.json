@@ -110,8 +110,8 @@
               "questionOptions": {
                 "rendering": "number",
                 "concept": "b5ab7bc0-bffb-4dc8-b832-2e1713f06944",
-                "max": "",
-                "min": "",
+                "min": "0",
+                "step": 1,
                 "showDate": "false"
               },
               "id": "Estimated_Blood_Loss"
