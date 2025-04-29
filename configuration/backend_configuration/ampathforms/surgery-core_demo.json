@@ -172,9 +172,9 @@
               "questionOptions": {
                 "rendering": "datetime",
                 "concept": "0934658e-fee3-44e3-a8f2-292dc3587f54",
-                "weeksList": "",
-                "datePickerFormat": "both"
+                "weeksList": ""
               },
+              "datePickerFormat": "both",
               "id": "Time_of_Procedure"
             },
             {
