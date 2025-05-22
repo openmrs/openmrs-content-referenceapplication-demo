@@ -1,0 +1,15 @@
+{
+    "uuid": "",
+    "form": "SOAP Note Template",
+    "form_name_translation": "Modèle de note SOAP",
+    "description": "French Translations for SOAP Note Template",
+    "language": "fr",
+    "translations": {
+      "SOAP": "SOAP",
+      "SOAP Note": "Note SOAP",
+      "Subjective Findings": "Constatations subjectives",
+      "Objective Findings": "Constatations objectives",
+      "Assessment": "L'évaluation",
+      "Plan": "Plan"
+    }
+}
