@@ -1,0 +1,15 @@
+{
+    "uuid": "f3a9bc1b-4849-4cc3-a869-8b6a1608c8cb",
+    "form": "SOAP Note Template",
+    "form_name_translation": "SOAP Note Template",
+    "description": "",
+    "language": "en",
+    "translations": {
+      "SOAP": "SOAP",
+      "SOAP Note": "SOAP Note",
+      "Subjective Findings": "Subjective Findings",
+      "Objective Findings": "Objective Findings",
+      "Assessment": "Assessment",
+      "Plan": "Plan"
+    }
+}
