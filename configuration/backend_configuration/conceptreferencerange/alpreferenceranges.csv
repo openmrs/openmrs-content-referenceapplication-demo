@@ -1,0 +1,10 @@
+Uuid,Concept Numeric uuid,Label,Absolute low,Critical low,Normal low,Normal high,Critical high,Absolute high,Criteria
+e1d6108b-b395-4c41-bd6f-1c9cbb33b94b,785AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,ALP Newborn (0-2 weeks),0,50,80,250,350,,$patient.getAgeInWeeks() >= 0 && $patient.getAgeInWeeks() < 2
+cc91a686-9e8d-4b3f-9550-e0638015317e,785AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,ALP Infants (2 weeks - 12 months),0,80,120,420,550,,$patient.getAgeInWeeks() > 2 && $patient.getAgeInMonths() <= 12
+84e6bed7-aad3-4d14-b6b4-c719abad726d,785AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,ALP Children (1 - 9 years),0,100,150,420,550,,$patient.getAge() > 1 && $patient.getAge() <= 10
+5272f002-edd6-4a9c-869e-b68b1b7adc88,785AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,ALP Adolescents (10 - 14 years) - Female,0,120,150,500,650,,"$patient.getAge() > 10 && $patient.getAge() <= 14 && $patient.getGender() == ""Female"""
+45d59594-8216-4e17-93fc-4e578090fcaf,785AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,ALP Adolescents (10 - 18 years) - Male,0,150,200,400,500,,"$patient.getAge() > 10 && $patient.getAge() <= 18 && $patient.getGender() == ""Male"""
+dd9a6f84-74a3-4268-981a-57c07a47e282,785AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,ALP Late Adolescents (15 - 18 years) - Female,0,80,120,350,450,,"$patient.getAge() > 15 && $patient.getAge() <= 18 && $patient.getGender() == ""Female"""
+31fee95c-c070-40ed-95e8-c79bbc9c7708,785AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,ALP Adult Men (>18 years),0,25,35,147,200,,"$patient.getAge() > 18 && $patient.getGender() == ""Male"""
+93395ab8-deb2-4d28-aea5-1be73dc2554b,785AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,"ALP Adult (Non-Pregnant Women, > 18 years) ",0,25,35,147,200,,"$patient.getAge() > 18 && $patient.getGender() == ""Female"" && $patient.isPregnant() == false"
+f072fe91-dccc-4fa9-b4c6-c49cefb80202,785AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,ALP Pregnant Women,0,40,60,250,350,,"$patient.getGender() == ""Female"" && $patient.isPregnant() == true"
