@@ -13,7 +13,7 @@ f167da95-e9da-4d19-8f51-c1ac2b190c31,21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,HB New
 a5624f48-0c74-4ff5-bb5f-bb29ba8cb75a,21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,HB Children (6 months - 2 years),0,7,10.5,12,17,,$patient.getAgeInMonths() >= 6 && $patient.getAge() < 2
 d30213a2-3a23-4ccc-a4d1-f68384085a3a,21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,HB Children (2 - 6 years),0,7,11.5,12.5,17,,$patient.getAge() >= 2 && $patient.getAge() < 6
 5a475b8e-b87f-4079-9ba6-6078758292b6,21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,HB Children (6 - 12 years),0,7,11.5,13.5,19,,$patient.getAge() >= 6 && $patient.getAge() < 12
-0e4b4deb-cb51-419e-a028-20261ecb07d0,21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,HB Adolescents (12 - 18 years) - Female,0,7,12,14,18,,"$patient.getAge() >= 12 && $patient.getAge() <= 18 && $patient.getGender() == ""Female"""
-fa12e429-07ce-4e9e-b544-0b2c11e6c758,21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,HB Adolescents (12 - 18 years) - Male,0,7,13,14.5,20,,"$patient.getAge() >= 12 && $patient.getAge() <= 18 && $patient.getGender() == ""Male"""
-4e173474-5d2b-47f0-9cdd-f83adc4d8941,21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,HB Adult Men (>18 years),0,7,13.5,15.5,22,,"$patient.getAge() > 18 && $patient.getGender() == ""Male"""
-d33bc026-ce44-4481-8ee0-033fc74a0f88,21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,"HB Adult Women (>18 years, Non-Pregnant)",0,7,12,14,20,,"$patient.getAge() > 18 && $patient.getGender() == ""Female"" && $patient.isPregnant() == false"
+0e4b4deb-cb51-419e-a028-20261ecb07d0,21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,HB Adolescents (12 - 18 years) - F,0,7,12,14,18,,"$patient.getAge() >= 12 && $patient.getAge() <= 18 && $patient.getGender() == ""F"""
+fa12e429-07ce-4e9e-b544-0b2c11e6c758,21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,HB Adolescents (12 - 18 years) - M,0,7,13,14.5,20,,"$patient.getAge() >= 12 && $patient.getAge() <= 18 && $patient.getGender() == ""M"""
+4e173474-5d2b-47f0-9cdd-f83adc4d8941,21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,HB Adult Men (>18 years),0,7,13.5,15.5,22,,"$patient.getAge() > 18 && $patient.getGender() == ""M"""
+d33bc026-ce44-4481-8ee0-033fc74a0f88,21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,"HB Adult Women (>18 years, Non-Pregnant)",0,7,12,14,20,,"$patient.getAge() > 18 && $patient.getGender() == ""F"" && $patient.isPregnant() == false"
