@@ -18,4 +18,4 @@ a1f5c3d2-4b6e-4e8a-9f2d-1b3e8e4a2d7f,,Inpatient Note,A short free-text note writ
 b2c4d5e6-7f8a-4e9b-8c1d-2e3f8e4a3b8f,,Transfer Request,A stand-alone encounter type for a transfer request not part of a larger note,,,
 f47ac10b-58cc-4372-a567-0e02b2c3d479,,Bed Assignment,Assigning a new bed to a patient without admitting or transferring them,,,
 550e8400-e29b-41d4-a716-446655440000,,Cancel ADT,An encounter that notes that a request to admit/transfer/discharge a patient is being overridden,,,
-6f8393e7-cf3d-45e1-abc1-d83858a18d8c,,Procedure History,Encounter type for Procedure History,,,
+6f8393e7-cf3d-45e1-abc1-d83858a18d8c,,Procedure History,Encounter for documenting completed medical procedures,,,

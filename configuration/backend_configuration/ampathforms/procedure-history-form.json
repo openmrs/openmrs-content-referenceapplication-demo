@@ -45,7 +45,13 @@
               },
               "id": "procedureDate",
               "label": "Date/time procedure performed",
-              "datePickerFormat": "both"
+              "datePickerFormat": "both",
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
             },
             {
               "type": "obs",
@@ -55,7 +61,13 @@
               },
               "id": "procedureEndDate",
               "label": "Procedure end date/time",
-              "datePickerFormat": "both"
+              "datePickerFormat": "both",
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
             },
             {
               "type": "obs",
@@ -98,7 +110,7 @@
               "questionOptions": {
                 "rendering": "number",
                 "concept": "165929AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "min": "0",
+                "min": "1",
                 "max": "100"
               },
               "id": "procedureDuration",
@@ -106,6 +118,8 @@
             },
             {
               "type": "obs",
+              "id": "durationUnit",
+              "label": "Duration units",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "1732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -144,8 +158,14 @@
                   }
                 ]
               },
-              "id": "durationUnit",
-              "label": "Duration units"
+              "clearWhenExpression": "Number(procedureDuration) > 99 && (durationUnit === '1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')",
+              "validators": [
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "durationUnit === '1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 99",
+                  "message": "Duration cannot exceed 100 years.. Change unit or reduce duration."
+                }
+              ]
             },
             {
               "type": "obs",
@@ -164,10 +184,10 @@
   ],
   "processor": "EncounterFormProcessor",
   "encounter": "Procedure History",
-  "encounterType": "6f8393e7-cf3d-45e1-abc1-d83858a18d8c",
+  "encounterType": "e22e39fd-7db2-45e7-80f1-60fa0d5a4378",
   "referencedForms": [],
-  "uuid": "4965333c-6a8d-4f32-8030-9abf57b62058",
-  "description": "Encounter type for Procedure History",
+  "uuid": "a2a125b6-62c5-4b5a-b86e-d252266d4b92",
+  "description": "Procedure History Form - used for documenting completed medical procedures",
   "version": "1.0.0",
   "published": true,
   "retired": false
