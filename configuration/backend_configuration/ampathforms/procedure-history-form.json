@@ -34,7 +34,7 @@
                 ]
               },
               "id": "procedurePerformed",
-              "label": "Name of Procedure performed",
+              "label": "Procedure performed",
               "required": true
             },
             {
@@ -43,8 +43,8 @@
                 "rendering": "datetime",
                 "concept": "160715AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "procedureDate",
-              "label": "Date/time procedure performed",
+              "id": "procedureStartDate",
+              "label": "Date/time procedure started",
               "datePickerFormat": "both",
               "validators": [
                 {
@@ -60,12 +60,17 @@
                 "concept": "167132AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "id": "procedureEndDate",
-              "label": "Procedure end date/time",
+              "label": "Date/time procedure ended",
               "datePickerFormat": "both",
               "validators": [
                 {
                   "type": "date",
                   "allowFutureDates": "true"
+                },
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "procedureStartDate && procedureEndDate && (new Date(procedureEndDate) < new Date(procedureStartDate))",
+                  "message": "Procedure End date/time cannot be before start date/time"
                 }
               ]
             },
@@ -111,35 +116,20 @@
                 "rendering": "number",
                 "concept": "165929AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "min": "1",
-                "max": "100"
+                "max": "100000",
+                "step": 1
               },
               "id": "procedureDuration",
-              "label": "Duration of procedure"
+              "label": "Procedure duration"
             },
             {
               "type": "obs",
-              "id": "durationUnit",
-              "label": "Duration units",
+              "id": "procedureDurationUnit",
+              "label": "Duration unit",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "1732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "answers": [
-                  {
-                    "concept": "1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Days"
-                  },
-                  {
-                    "concept": "1822AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Hours"
-                  },
-                  {
-                    "concept": "1733AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Minutes"
-                  },
-                  {
-                    "concept": "1074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Months"
-                  },
                   {
                     "concept": "162582AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Number of occurrences"
@@ -149,8 +139,24 @@
                     "label": "Seconds"
                   },
                   {
+                    "concept": "1733AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Minutes"
+                  },
+                  {
+                    "concept": "1822AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Hours"
+                  },
+                  {
+                    "concept": "1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Days"
+                  },
+                  {
                     "concept": "1073AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Weeks"
+                  },
+                  {
+                    "concept": "1074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Months"
                   },
                   {
                     "concept": "1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -158,12 +164,37 @@
                   }
                 ]
               },
-              "clearWhenExpression": "Number(procedureDuration) > 99 && (durationUnit === '1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')",
+              "clearWhenExpression": "Number(procedureDuration) > 99 && (procedureDurationUnit === '1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')",
               "validators": [
                 {
                   "type": "js_expression",
-                  "failsWhenExpression": "durationUnit === '1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 99",
+                  "failsWhenExpression": "procedureDurationUnit === '1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 99",
                   "message": "Duration cannot exceed 100 years.. Change unit or reduce duration."
+                },
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "procedureDurationUnit === '1733AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 1440",
+                  "message": "Duration cannot exceed 1440 minutes.. Change unit or reduce duration."
+                },
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "procedureDurationUnit === '1822AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 168",
+                  "message": "Duration cannot exceed 168 hours.. Change unit or reduce duration."
+                },
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "procedureDurationUnit === '1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 365",
+                  "message": "Duration cannot exceed 365 days.. Change unit or reduce duration."
+                },
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "procedureDurationUnit === '1073AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 52",
+                  "message": "Duration cannot exceed 52 weeks.. Change unit or reduce duration."
+                },
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "procedureDurationUnit === '1074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 12",
+                  "message": "Duration cannot exceed 12 months.. Change unit or reduce duration."
                 }
               ]
             },
