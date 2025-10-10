@@ -1,0 +1,225 @@
+{
+  "name": "Procedure Form",
+  "pages": [
+    {
+      "label": "Procedure History",
+      "sections": [
+        {
+          "label": "Procedure History",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "isSearchable": true,
+                "concept": "1651AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "441AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Clean and dressing"
+                  },
+                  {
+                    "concept": "1934AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Suture wound with dressing"
+                  },
+                  {
+                    "concept": "654781a2-5b3d-4fc6-a55b-66e8d7bce2f8",
+                    "label": "Orbital surgery"
+                  },
+                  {
+                    "concept": "646e5c57-c07d-4752-b1b3-dc4e14959419",
+                    "label": "Valvuloplasty"
+                  }
+                ]
+              },
+              "id": "procedurePerformed",
+              "label": "Procedure performed",
+              "required": true
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "datetime",
+                "concept": "160715AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "procedureStartDate",
+              "label": "Date/time procedure started",
+              "datePickerFormat": "both",
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "datetime",
+                "concept": "167132AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "procedureEndDate",
+              "label": "Date/time procedure ended",
+              "datePickerFormat": "both",
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                },
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "procedureStartDate && procedureEndDate && (new Date(procedureEndDate) < new Date(procedureStartDate))",
+                  "message": "Procedure End date/time cannot be before start date/time"
+                }
+              ]
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "163049AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "procedureSite",
+              "label": "Procedure site"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "160721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160717AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Procedure outcome satisfactory to patient"
+                  },
+                  {
+                    "concept": "160718AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Procedure outcome satisfactory to physician"
+                  },
+                  {
+                    "concept": "160719AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Procedure outcome unsatisfactory to patient"
+                  },
+                  {
+                    "concept": "160720AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Procedure outcome unsatisfactory to physician"
+                  }
+                ]
+              },
+              "id": "procedureOutcome",
+              "label": "Procedure outcome"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "165929AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "1",
+                "max": "100000",
+                "step": 1
+              },
+              "id": "procedureDuration",
+              "label": "Procedure duration"
+            },
+            {
+              "type": "obs",
+              "id": "procedureDurationUnit",
+              "label": "Duration unit",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "1732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "162582AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Number of occurrences"
+                  },
+                  {
+                    "concept": "162583AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Seconds"
+                  },
+                  {
+                    "concept": "1733AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Minutes"
+                  },
+                  {
+                    "concept": "1822AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Hours"
+                  },
+                  {
+                    "concept": "1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Days"
+                  },
+                  {
+                    "concept": "1073AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Weeks"
+                  },
+                  {
+                    "concept": "1074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Months"
+                  },
+                  {
+                    "concept": "1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Years"
+                  }
+                ]
+              },
+              "clearWhenExpression": "Number(procedureDuration) > 99 && (procedureDurationUnit === '1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')",
+              "validators": [
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "procedureDurationUnit === '1734AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 99",
+                  "message": "Duration cannot exceed 100 years.. Change unit or reduce duration."
+                },
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "procedureDurationUnit === '1733AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 1440",
+                  "message": "Duration cannot exceed 1440 minutes.. Change unit or reduce duration."
+                },
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "procedureDurationUnit === '1822AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 168",
+                  "message": "Duration cannot exceed 168 hours.. Change unit or reduce duration."
+                },
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "procedureDurationUnit === '1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 365",
+                  "message": "Duration cannot exceed 365 days.. Change unit or reduce duration."
+                },
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "procedureDurationUnit === '1073AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 52",
+                  "message": "Duration cannot exceed 52 weeks.. Change unit or reduce duration."
+                },
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "procedureDurationUnit === '1074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Number(procedureDuration) > 12",
+                  "message": "Duration cannot exceed 12 months.. Change unit or reduce duration."
+                }
+              ]
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160716AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 5
+              },
+              "id": "procedureComment",
+              "label": "Procedure comment"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounter": "Procedure History",
+  "encounterType": "e22e39fd-7db2-45e7-80f1-60fa0d5a4378",
+  "referencedForms": [],
+  "uuid": "a2a125b6-62c5-4b5a-b86e-d252266d4b92",
+  "description": "Procedure History Form - used for documenting completed medical procedures",
+  "version": "1.0.0",
+  "published": true,
+  "retired": false
+}
