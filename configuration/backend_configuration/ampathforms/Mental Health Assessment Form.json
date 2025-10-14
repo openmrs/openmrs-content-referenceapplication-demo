@@ -331,7 +331,7 @@
               "id": "phq9_5"
             },
             {
-              "label": "6. Feeling bad about yourself - or that you’re a failure or have let yourself or your family down",
+              "label": "6. Feeling bad about yourself - or that you're a failure or have let yourself or your family down",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -562,6 +562,9 @@
                 "max": "27",
                 "min": "0",
                 "showDate": "",
+                "calculate": {
+                  "calculateExpression": "(phq2_1 === '160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 0 : phq2_1 === '167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : phq2_1 === '167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 2 : phq2_1 === '167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 3 : 0) + (phq2_2 === '160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 0 : phq2_2 === '167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : phq2_2 === '167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 2 : phq2_2 === '167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 3 : 0) + (phq9_3 === '160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 0 : phq9_3 === '167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : phq9_3 === '167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 2 : phq9_3 === '167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 3 : 0) + (phq9_4 === '160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 0 : phq9_4 === '167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : phq9_4 === '167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 2 : phq9_4 === '167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 3 : 0) + (phq9_5 === '160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 0 : phq9_5 === '167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : phq9_5 === '167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 2 : phq9_5 === '167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 3 : 0) + (phq9_6 === '160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 0 : phq9_6 === '167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : phq9_6 === '167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 2 : phq9_6 === '167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 3 : 0) + (phq9_7 === '160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 0 : phq9_7 === '167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : phq9_7 === '167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 2 : phq9_7 === '167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 3 : 0) + (phq9_8 === '160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 0 : phq9_8 === '167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : phq9_8 === '167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 2 : phq9_8 === '167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 3 : 0) + (phq9_9 === '160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 0 : phq9_9 === '167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : phq9_9 === '167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 2 : phq9_9 === '167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 3 : 0)"
+                },
                 "conceptMappings": [
                   {
                     "type": "SNOMED-CT",
@@ -573,7 +576,13 @@
                   }
                 ]
               },
-              "id": "phq9Score"
+              "id": "phq9Score",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "readonly": "true"
+                }
+              ]
             }
           ]
         }
