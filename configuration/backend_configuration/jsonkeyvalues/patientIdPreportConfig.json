@@ -1,0 +1,18 @@
+{
+    "report.patientIdSticker.fields.identifier": "true",
+    "report.patientIdSticker.fields.name": "true",
+    "report.patientIdSticker.fields.dob": "true",
+    "report.patientIdSticker.fields.age": "true",
+    "report.patientIdSticker.fields.gender": "true",
+    "report.patientIdSticker.fields.fulladdress": "true",
+    "report.patientIdSticker.fields.label.font.size": "2",
+    "report.patientIdSticker.fields.label.value.font.size": "4",
+    "report.patientIdSticker.fields.label.gap": "1mm",
+    "report.patientIdSticker.stylesheet": "patientIdStickerFopStylesheet.xsl",
+    "report.patientIdSticker.logourl": "web/module/resources/OpenMRS_logo.png",
+    "report.patientIdSticker.barcode": "true",
+    "report.patientIdSticker.pages": "1",
+    "report.patientIdSticker.size.height": "50mm",
+    "report.patientIdSticker.size.width": "70mm",
+    "report.patientIdSticker.header": "true"
+}
