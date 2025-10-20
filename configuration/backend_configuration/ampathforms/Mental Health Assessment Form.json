@@ -5,7 +5,7 @@
   "retired": false,
   "pages": [
     {
-      "label": "PHQ-2",
+      "label": "PHQ-2 Screening",
       "sections": [
         {
           "label": "Introduction",
@@ -16,9 +16,13 @@
               "questionOptions": {
                 "rendering": "markdown"
               },
-              "id": "fooMarkdown",
+              "id": "phq9Intro",
               "value": [
-                "**This form is used :** for screening, diagnosing, monitoring and measuring the severity of depression."
+                "**PHQ-9 Depression Screening**",
+                "",
+                "This form is used for screening, diagnosing, monitoring and measuring the severity of depression.",
+                "",
+                "**Instructions:** Over the last 2 weeks, how often have you been bothered by any of the following problems?"
               ]
             }
           ]
@@ -37,14 +41,6 @@
                   {
                     "type": "CIEL",
                     "value": "160753"
-                  },
-                  {
-                    "type": "CIEL",
-                    "value": "160753"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "439771001"
                   },
                   {
                     "type": "SNOMED-CT",
@@ -80,6 +76,16 @@
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "167006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "167006"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "44250-9"
+                  }
+                ],
                 "answers": [
                   {
                     "concept": "160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -121,6 +127,16 @@
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "167007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "167007"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "44255-8"
+                  }
+                ],
                 "answers": [
                   {
                     "concept": "160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -142,16 +158,6 @@
                     "label": "Nearly every day",
                     "conceptMappings": []
                   }
-                ],
-                "conceptMappings": [
-                  {
-                    "type": "CIEL",
-                    "value": "167007"
-                  },
-                  {
-                    "type": "LOINC",
-                    "value": "44255-8"
-                  }
                 ]
               },
               "behaviours": [
@@ -171,7 +177,7 @@
       ]
     },
     {
-      "label": "PHQ-9",
+      "label": "PHQ-9 Additional Questions",
       "sections": [
         {
           "label": "Further evaluation",
@@ -331,7 +337,7 @@
               "id": "phq9_5"
             },
             {
-              "label": "6. Feeling bad about yourself - or that you’re a failure or have let yourself or your family down",
+              "label": "6. Feeling bad about yourself - or that you're a failure or have let yourself or your family down",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -547,21 +553,42 @@
       ]
     },
     {
-      "label": "PHQ-9 score",
+      "label": "Scoring and Results",
       "sections": [
         {
-          "label": "Total scores",
+          "label": "PHQ-9 Scoring",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "PHQ-9 score obtained by adding score for each question",
+              "label": "PHQ-2 Score (Questions 1-2)",
+              "type": "display",
+              "questionOptions": {
+                "rendering": "number",
+                "max": "6",
+                "min": "0",
+                "calculate": {
+                  "calculateExpression": "calcPHQ9Score(phq2_1, phq2_2)"
+                }
+              },
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "readonly": "true"
+                }
+              ],
+              "id": "phq2Score"
+            },
+            {
+              "label": "PHQ-9 Total Score (Questions 1-9)",
               "type": "obs",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "165137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "max": "27",
                 "min": "0",
-                "showDate": "",
+                "calculate": {
+                  "calculateExpression": "calcPHQ9Score(phq2_1, phq2_2, phq9_3, phq9_4, phq9_5, phq9_6, phq9_7, phq9_8, phq9_9)"
+                },
                 "conceptMappings": [
                   {
                     "type": "SNOMED-CT",
@@ -573,7 +600,13 @@
                   }
                 ]
               },
-              "id": "phq9Score"
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "readonly": "true"
+                }
+              ],
+              "id": "phq9TotalScore"
             }
           ]
         }
@@ -583,21 +616,17 @@
       "label": "Notes",
       "sections": [
         {
-          "label": "Notes",
+          "label": "Additional Notes",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Mental Health Assessment Notes",
+              "label": "Clinician Notes",
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "165095AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rows": "",
                 "conceptMappings": [
-                  {
-                    "type": "AMPATH",
-                    "value": "1915"
-                  },
                   {
                     "type": "AMPATH",
                     "value": "1915"
@@ -612,7 +641,7 @@
                   }
                 ]
               },
-              "id": "phq9Notes"
+              "id": "clinicianNotes"
             }
           ]
         }
@@ -629,5 +658,6 @@
   "uuid": "2069bd57-d534-3de9-ae24-f1d4e4b2de83",
   "referencedForms": [],
   "encounterType": "36db5123-0ad5-41c0-9037-625b46e0ceef",
-  "encounter": "Mental Health Assessment"
+  "encounter": "Mental Health Assessment",
+  "description": "A form used for screening, diagnosing, monitoring and measuring the severity of depression"
 }
