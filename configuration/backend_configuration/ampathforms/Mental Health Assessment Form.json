@@ -16,7 +16,7 @@
               "questionOptions": {
                 "rendering": "markdown"
               },
-              "id": "fooMarkdown",
+              "id": "phq9Intro",
               "value": [
                 "**PHQ-9 Depression Screening**",
                 "",
@@ -76,6 +76,7 @@
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "167006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [],
                 "answers": [
                   {
                     "concept": "160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -551,25 +552,14 @@
           "questions": [
             {
               "label": "PHQ-2 Score (Questions 1-2)",
-              "type": "obs",
+              "type": "display",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "165137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "max": "6",
                 "min": "0",
                 "calculate": {
                   "calculateExpression": "calcPHQ9Score(phq2_1, phq2_2)"
-                },
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "720433000"
-                  },
-                  {
-                    "type": "CIEL",
-                    "value": "165137"
-                  }
-                ]
+                }
               },
               "behaviours": [
                 {
