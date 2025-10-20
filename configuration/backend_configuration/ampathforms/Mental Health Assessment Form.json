@@ -76,7 +76,16 @@
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "167006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [],
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "167006"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "44250-9"
+                  }
+                ],
                 "answers": [
                   {
                     "concept": "160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
