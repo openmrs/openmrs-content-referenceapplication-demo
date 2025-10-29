@@ -9,7 +9,6 @@
     "report.patientIdSticker.fields.label.value.font.size": "4",
     "report.patientIdSticker.fields.label.gap": "1mm",
     "report.patientIdSticker.stylesheet": "patientIdStickerFopStylesheet.xsl",
-    "report.patientIdSticker.logourl": "web/module/resources/OpenMRS_logo.png",
     "report.patientIdSticker.barcode": "true",
     "report.patientIdSticker.pages": "1",
     "report.patientIdSticker.size.height": "50mm",
