@@ -39,7 +39,6 @@
 							<sourceFile>${project.basedir}/content.properties</sourceFile>
 						</configuration>
 					</execution>
-					<!-- Commented out for now
 					<execution>
 						<id>validate-configurations</id>
 						<phase>verify</phase>
@@ -50,7 +49,6 @@
 							<sourceDir>${configuration.dir}/backend_configuration</sourceDir>
 						</configuration>
 					</execution>
-					-->
 				</executions>
 			</plugin>
 			<plugin>
