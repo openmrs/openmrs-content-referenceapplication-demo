@@ -1080,7 +1080,7 @@
                 "concept": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "date",
                 "calculate": {
-                  "calculateExpression": "calcEDD('lmp')"
+                  "calculateExpression": "calcEDD(useFieldValue('lmp'))"
                 }
               },
               "hide": {
