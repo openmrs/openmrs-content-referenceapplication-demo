@@ -561,7 +561,7 @@
           "questions": [
             {
               "label": "PHQ-2 Score (Questions 1-2)",
-              "type": "display",
+              "type": "control",
               "questionOptions": {
                 "rendering": "number",
                 "max": "6",
