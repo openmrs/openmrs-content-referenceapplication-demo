@@ -457,7 +457,7 @@
                     "rendering": "number",
                     "min": "0",
                     "calculate": {
-                      "calculateExpression": "calcTimeDifference(useFieldValue('complaintsOnset'), 'd')"
+                      "calculateExpression": "calcTimeDifference(complaintsOnset, 'd')"
                     }
                   },
                   "validators": []
@@ -888,7 +888,7 @@
                 },
                 {
                   "type": "js_expression",
-                  "failsWhenExpression": "myValue > useFieldValue('encDate')",
+                  "failsWhenExpression": "myValue > encDate",
                   "message": "Cannot be after encounter date"
                 }
               ],
@@ -1041,7 +1041,7 @@
                 },
                 {
                   "type": "js_expression",
-                  "failsWhenExpression": "myValue > useFieldValue('encDate')",
+                  "failsWhenExpression": "myValue > encDate",
                   "message": "Cannot be after the encounter date"
                 }
               ]
@@ -1080,7 +1080,7 @@
                 "concept": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "date",
                 "calculate": {
-                  "calculateExpression": "calcEDD(useFieldValue('lmp'))"
+                  "calculateExpression": "calcEDD(lmp)"
                 }
               },
               "hide": {
