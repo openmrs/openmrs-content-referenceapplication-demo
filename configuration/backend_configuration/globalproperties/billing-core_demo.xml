@@ -4,5 +4,9 @@
             <property>billing.systemReceiptNumberGenerator</property>
             <value>org.openmrs.module.billing.api.SequentialReceiptNumberGenerator</value>
         </globalProperty>
+        <globalProperty>
+            <property>billing.currencySymbol</property>
+            <value>CDF</value>
+        </globalProperty>
     </globalProperties>
 </config>
