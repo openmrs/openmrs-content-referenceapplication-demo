@@ -3,3 +3,13 @@ Uuid, Void/Retire, Service Name, Short Name, Concept, Service Type, Service Stat
 a0f7d8a1-4fa2-418c-aa8a-9b358f43d605,, Orthopedic Service, OTHS, 164949AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, Orthopedic Services, Enabled
 16435ab4-27c3-4d91-b21e-52819bd654d8,, Nutrition counseling, NUC, 1380AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, Nutrition Services, Enabled
 360fab13-d92b-4a9f-ad4e-0ac223e7f54c,, OPD consultation, OPDC, 160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, Orthopedic Services, Enabled
+6838f60f-a7c0-4786-9cf0-2f5032003845,, Complete blood count, CBC, 1019AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, Laboratory orders, Enabled
+548de11a-582f-4d7d-b1e1-c5a42cae650b,, Serum glucose, SGLU, 887AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, Laboratory orders, Enabled
+df415859-9815-4a33-bcc9-c3a0dca11fe7,, Urine routine and microscopy, URIM, 161445AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, Laboratory orders, Enabled
+6cfba6f3-d298-4ea8-b8fa-7aac69350527,, Haemoglobin, HGB, 21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, Laboratory orders, Enabled
+fb14c40f-6a4f-4391-9fca-a8ba3cf96769,, Serum creatinine, SCRN, 790AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, Laboratory orders, Enabled
+b9851332-d21f-47fd-800e-77195b2c1632,, Blood urea nitrogen, BUN, 857AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, Laboratory orders, Enabled
+b722db15-219c-4009-912e-226fa2b5c72e,, Hepatitis B Surface Antigen Test, HBsAg, 159430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, Laboratory orders, Enabled
+50f37029-59ee-4f82-87e5-762ddeac7e96,, HIV viral load, HIVVL, 856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, Laboratory orders, Enabled
+6ab59209-6b71-4c34-9c03-b713e6a7dcb4,, Malarial smear, MASM, 32AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, Laboratory orders, Enabled
+28064642-b7ae-4c81-881e-709a28d1c9eb,, Serum potassium, KPOT, 1133AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, Laboratory orders, Enabled
