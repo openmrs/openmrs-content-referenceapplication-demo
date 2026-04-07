@@ -1,7 +1,7 @@
 Uuid,Concept Numeric uuid,Label,Absolute Low,Critical Low,Normal Low,Normal High,Critical High,Absolute High,Criteria
-33071c46-8c74-48f1-98f6-90120edea0a5,1342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Children and Infant (0 - 5 yrs) Male,10,13,13.8,17.3,18,30,"$patient.getAge() >= 0 && $patient.getAge() < 5 && $patient.getGender() == ""M"""
-a698d9be-03a7-448c-b4e6-f691b1f33a2c,1342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Children and Infant (0 - 5 yrs) Female,10,12.7,13.3,17.1,17.8,30,"$patient.getAge() >= 0 && $patient.getAge() < 5 && $patient.getGender() == ""F"""
-377a0756-c764-4b1a-94b9-1cc4e253f5a6,1342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Children and Teen (5 - 19 yrs) Male,10,13.3,13.7,18.5,19.3,40,"$patient.getAge() >= 5 && $patient.getAge() < 20 && $patient.getGender() == ""M"""
-c117a7c3-995b-438d-8f30-c4aa9d4d68a1,1342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Children and Teen (5 - 19 yrs) Female,10,13.1,13.5,19,20,40,"$patient.getAge() >= 5 && $patient.getAge() < 20 && $patient.getGender() == ""F"""
-581410dc-73d2-4f42-9b0f-a8b2fa58a3e7,1342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Adult ≥20 Male,10,16,18.5,24.9,30,60,"$patient.getAge() >= 20 && $patient.getGender() == ""M"""
-91324064-33c4-416f-94df-cf566276a9fb,1342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Adult ≥20 Female,10,16,18.5,24.9,30,60,"$patient.getAge() >= 20 && $patient.getGender() == ""F"""
+33071c46-8c74-48f1-98f6-90120edea0a5,1342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Children and Infant (0 - 5 yrs) Male,0,13,13.8,17.3,18,100,"$patient.getAge() >= 0 && $patient.getAge() < 5 && $patient.getGender() == ""M"""
+a698d9be-03a7-448c-b4e6-f691b1f33a2c,1342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Children and Infant (0 - 5 yrs) Female,0,12.7,13.3,17.1,17.8,100,"$patient.getAge() >= 0 && $patient.getAge() < 5 && $patient.getGender() == ""F"""
+377a0756-c764-4b1a-94b9-1cc4e253f5a6,1342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Children and Teen (5 - 19 yrs) Male,0,13.3,13.7,18.5,19.3,100,"$patient.getAge() >= 5 && $patient.getAge() < 20 && $patient.getGender() == ""M"""
+c117a7c3-995b-438d-8f30-c4aa9d4d68a1,1342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Children and Teen (5 - 19 yrs) Female,0,13.1,13.5,19,20,100,"$patient.getAge() >= 5 && $patient.getAge() < 20 && $patient.getGender() == ""F"""
+581410dc-73d2-4f42-9b0f-a8b2fa58a3e7,1342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Adult ≥20 Male,0,16,18.5,24.9,30,100,"$patient.getAge() >= 20 && $patient.getGender() == ""M"""
+91324064-33c4-416f-94df-cf566276a9fb,1342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Adult ≥20 Female,0,16,18.5,24.9,30,100,"$patient.getAge() >= 20 && $patient.getGender() == ""F"""
