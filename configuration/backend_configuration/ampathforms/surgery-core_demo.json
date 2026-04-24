@@ -11,7 +11,7 @@
       "sections": [
         {
           "label": "Surgical progress",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Pre-Operative Diagnosis",
@@ -110,9 +110,7 @@
               "questionOptions": {
                 "rendering": "number",
                 "concept": "b5ab7bc0-bffb-4dc8-b832-2e1713f06944",
-                "min": "0",
-                "step": 1,
-                "showDate": "false"
+                "min": "0"
               },
               "id": "Estimated_Blood_Loss"
             },
@@ -171,8 +169,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "datetime",
-                "concept": "0934658e-fee3-44e3-a8f2-292dc3587f54",
-                "weeksList": ""
+                "concept": "0934658e-fee3-44e3-a8f2-292dc3587f54"
               },
               "datePickerFormat": "both",
               "id": "Time_of_Procedure"
@@ -193,6 +190,5 @@
     }
   ],
   "processor": "EncounterFormProcessor",
-  "uuid": "xxxx",
   "referencedForms": []
 }
