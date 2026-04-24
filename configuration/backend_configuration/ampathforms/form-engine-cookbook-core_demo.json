@@ -17,7 +17,9 @@
           "questions": [
             {
               "id": "cookbookIntro",
-              "questionOptions": { "rendering": "markdown" },
+              "questionOptions": {
+                "rendering": "markdown"
+              },
               "value": [
                 "## Form Engine Cookbook\n\nThis form is a reference library of patterns supported by the OpenMRS 3 form engine. Each page focuses on one topic (conditional visibility, validators, computed fields, and so on) and opens with a short explanation followed by fields that exercise the pattern.\n\nOpen the JSON to copy the shape of any example into your own form. The questions here use real concepts from the reference-app demo metadata so the form also renders as-is in a dev deployment.\n\nThis form is `published: false` by design. It will not appear in the patient chart unless you flip that flag for local testing."
               ]
@@ -35,7 +37,9 @@
           "questions": [
             {
               "id": "visibilityIntro",
-              "questionOptions": { "rendering": "markdown" },
+              "questionOptions": {
+                "rendering": "markdown"
+              },
               "value": [
                 "**`hide.hideWhenExpression`** hides a field when a JavaScript expression evaluates true. The expression has access to every other question by its `id`, plus the helpers in the engine's `common-expression-helpers` (e.g. `isEmpty`), plus the implicit patient-context globals `sex` and `age`.\n\n**`disabled.disableWhenExpression`** is the same idea for the disabled state: the field renders but is non-interactive while the expression is true.\n\n**`isDisabled`** is the static boolean form: the field is always disabled."
               ]
@@ -54,8 +58,14 @@
                 "rendering": "radio",
                 "concept": "5272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
                 ]
               }
             },
@@ -118,9 +128,11 @@
           "questions": [
             {
               "id": "requiredIntro",
-              "questionOptions": { "rendering": "markdown" },
+              "questionOptions": {
+                "rendering": "markdown"
+              },
               "value": [
-                "The `required` property accepts three shapes:\n\n1. **Boolean** — `\"required\": true` makes the field unconditionally required.\n2. **String expression** — `\"required\": \"<jsExpression>\"` makes the field required only when the expression evaluates true. Expression scope matches `hide`.\n3. **Object with `type: \"conditionalAnswered\"`** — makes the field required when another field has been answered with one of a specified set of concept UUIDs. Useful for safety-plan-style branching where the engine enforces the linkage declaratively."
+                "The `required` property accepts three shapes:\n\n1. **Boolean** \u2014 `\"required\": true` makes the field unconditionally required.\n2. **String expression** \u2014 `\"required\": \"<jsExpression>\"` makes the field required only when the expression evaluates true. Expression scope matches `hide`.\n3. **Object with `type: \"conditionalAnswered\"`** \u2014 makes the field required when another field has been answered with one of a specified set of concept UUIDs. Useful for safety-plan-style branching where the engine enforces the linkage declaratively."
               ]
             }
           ]
@@ -138,8 +150,14 @@
                 "rendering": "select",
                 "concept": "164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "answers": [
-                  { "concept": "160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "New client" },
-                  { "concept": "160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Revisit" }
+                  {
+                    "concept": "160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "New client"
+                  },
+                  {
+                    "concept": "160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Revisit"
+                  }
                 ]
               }
             }
@@ -157,8 +175,14 @@
                 "rendering": "radio",
                 "concept": "165656AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
                 ]
               }
             },
@@ -186,9 +210,18 @@
                 "rendering": "radio",
                 "concept": "159576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "answers": [
-                  { "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Positive" },
-                  { "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Negative" },
-                  { "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Unknown" }
+                  {
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown"
+                  }
                 ]
               }
             },
@@ -200,7 +233,9 @@
                 "type": "conditionalAnswered",
                 "message": "Required when HIV status is Positive",
                 "referenceQuestionId": "hivStatus",
-                "referenceQuestionAnswers": ["703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
+                "referenceQuestionAnswers": [
+                  "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                ]
               },
               "questionOptions": {
                 "rendering": "date",
@@ -220,9 +255,11 @@
           "questions": [
             {
               "id": "validatorsIntro",
-              "questionOptions": { "rendering": "markdown" },
+              "questionOptions": {
+                "rendering": "markdown"
+              },
               "value": [
-                "Fields can declare a `validators` array. Each entry is an object with a `type` naming one of the engine's built-in validators:\n\n- **`js_expression`** — flags the field when `failsWhenExpression` evaluates true. The shape also accepts `message` for a custom error and `warningMessage` for the lighter variant. Good for cross-field and numeric-range checks.\n- **`date`** — rejects invalid dates, and optionally future dates via `allowFutureDates: 'false'`.\n- **`conditionalAnswered`** — fails when this field is empty and the referenced field has a specific answer. Same shape as the `required` object above, surfaced as a validator instead.\n- **`default_value`** — fails when the provided `defaultValue` isn't valid for the field's concept (e.g. a value that isn't in the coded answer list). Mostly useful to catch authoring mistakes at load time.\n\nA single field can carry several validators; the engine runs them all."
+                "Fields can declare a `validators` array. Each entry is an object with a `type` naming one of the engine's built-in validators:\n\n- **`js_expression`** \u2014 flags the field when `failsWhenExpression` evaluates true. The shape also accepts `message` for a custom error and `warningMessage` for the lighter variant. Good for cross-field and numeric-range checks.\n- **`date`** \u2014 rejects invalid dates, and optionally future dates via `allowFutureDates: 'false'`.\n- **`conditionalAnswered`** \u2014 fails when this field is empty and the referenced field has a specific answer. Same shape as the `required` object above, surfaced as a validator instead.\n- **`default_value`** \u2014 fails when the provided `defaultValue` isn't valid for the field's concept (e.g. a value that isn't in the coded answer list). Mostly useful to catch authoring mistakes at load time.\n\nA single field can carry several validators; the engine runs them all."
               ]
             }
           ]
@@ -264,7 +301,10 @@
                 "concept": "159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "validators": [
-                { "type": "date", "allowFutureDates": "false" }
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
               ]
             }
           ]
@@ -281,8 +321,14 @@
                 "rendering": "radio",
                 "concept": "165656AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
                 ]
               }
             },
@@ -300,7 +346,9 @@
                   "type": "conditionalAnswered",
                   "message": "Travel duration is expected when travel history is Yes",
                   "referenceQuestionId": "travelAnchorForValidator",
-                  "referenceQuestionAnswers": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
+                  "referenceQuestionAnswers": [
+                    "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  ]
                 }
               ]
             }
@@ -317,7 +365,9 @@
           "questions": [
             {
               "id": "computedIntro",
-              "questionOptions": { "rendering": "markdown" },
+              "questionOptions": {
+                "rendering": "markdown"
+              },
               "value": [
                 "Fields can be computed from other fields via `questionOptions.calculate.calculateExpression`. The expression is evaluated whenever dependencies change and the result is written into this field.\n\nThe `common-expression-helpers` module exposes a library of domain helpers usable inside these expressions: `calcBMI(height, weight)`, `calcEDD(lmp)`, `calcAgeBasedOnDate(dob)`, `calcBSA(height, weight)`, `calcMonthsOnART(artStartDate)`, `calcGravida`, plus the z-score family (`calcWeightForHeightZscore`, `calcBMIForAgeZscore`, `calcHeightForAgeZscore`). Also available: `today()`, `isDateBefore` / `isDateAfter`, `addDaysToDate`, `addWeeksToDate`, `arrayContains`, `arrayContainsAny`, `isEmpty`, `formatDate`, `parseDate`.\n\nFields referenced by id resolve to their current value at evaluation time."
               ]
@@ -380,7 +430,10 @@
                 "concept": "1427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "validators": [
-                { "type": "date", "allowFutureDates": "false" }
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
               ]
             },
             {
@@ -398,6 +451,287 @@
           ]
         }
       ]
+    },
+    {
+      "label": "Previous-value and historical",
+      "sections": [
+        {
+          "label": "About",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "prevValueIntro",
+              "questionOptions": {
+                "rendering": "markdown"
+              },
+              "value": [
+                "Three complementary features let a form surface data from the patient's prior encounters:\n\n- **`formOptions.usePreviousValueDisabled`** at the form root. When `true`, the per-question 'copy previous value' affordance is hidden across the whole form. Default is `false` (the affordance appears).\n- **`questionOptions.enablePreviousValue`** at the question level. An explicit opt-in for questions that should display the prior value as a fill hint, overriding silence at the form level.\n- **`field.historicalExpression`** \u2014 a JS expression that resolves to a value from a prior encounter and pre-populates the field when the form opens. The engine exposes the `HD` helper, e.g. `HD.getObject('prevEnc').getValue('<conceptUuid>')`, to walk the patient's encounter history."
+              ]
+            }
+          ]
+        },
+        {
+          "label": "enablePreviousValue (question-level opt-in)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "weightForPrev",
+              "label": "Weight (kg) \u2014 previous-value hint enabled",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "enablePreviousValue": true,
+                "min": "0",
+                "max": "250"
+              }
+            }
+          ]
+        },
+        {
+          "label": "historicalExpression (pre-fill from prior encounter)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "hivStatusWithHistory",
+              "label": "HIV status (pre-filled from most recent prior encounter)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "159576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown"
+                  }
+                ]
+              },
+              "historicalExpression": "_.isEmpty(HD.getObject('prevEnc').getValue('159576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')) ? undefined : HD.getObject('prevEnc').getValue('159576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Special renderings",
+      "sections": [
+        {
+          "label": "About",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "renderingsIntro",
+              "questionOptions": {
+                "rendering": "markdown"
+              },
+              "value": [
+                "Beyond the common `text`, `number`, `date`, `radio`, `checkbox`, and `select` renderings, the engine offers a handful of specialised ones:\n\n- **`toggle`** \u2014 a yes/no toggle backed by a coded concept. Use `toggleOptions.labelTrue` / `labelFalse` to customise the labels.\n- **`content-switcher`** \u2014 a Carbon ContentSwitcher for a small number of answer options (typically 2-5).\n- **`fixed-value`** \u2014 writes a preset value without user interaction. Useful for default-captured data like a standard encounter sub-type.\n- **`select-concept-answers`** \u2014 a dropdown whose options are read from the concept's answer set on the server, so the form doesn't have to enumerate them.\n- **`extension-widget`** \u2014 embeds a named O3 extension slot into the form. Useful when a third-party module contributes a widget (e.g. a summary card) that needs to live inside the form's flow."
+              ]
+            }
+          ]
+        },
+        {
+          "label": "toggle",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "recentTravelToggle",
+              "label": "Recent travel?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "toggle",
+                "concept": "165656AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "toggleOptions": {
+                  "labelTrue": "Yes",
+                  "labelFalse": "No"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "content-switcher",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "hivStatusContentSwitch",
+              "label": "HIV status",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "content-switcher",
+                "concept": "159576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "fixed-value",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "visitTypeFixed",
+              "label": "Visit type (fixed to 'New client')",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "fixed-value",
+                "concept": "164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "defaultValue": "160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              }
+            }
+          ]
+        },
+        {
+          "label": "select-concept-answers",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "hivStatusFromConceptAnswers",
+              "label": "HIV status (answer options read from the concept's answer set)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select-concept-answers",
+                "concept": "159576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              }
+            }
+          ]
+        },
+        {
+          "label": "extension-widget",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "patientBannerExtension",
+              "label": "Embedded extension slot",
+              "questionOptions": {
+                "rendering": "extension-widget",
+                "extensionId": "patient-banner",
+                "extensionSlotName": "patient-banner-slot"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Special field types",
+      "sections": [
+        {
+          "label": "About",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "fieldTypesIntro",
+              "questionOptions": {
+                "rendering": "markdown"
+              },
+              "value": [
+                "Beyond `obs` and `obsGroup`, the engine supports several specialised field types. Each one maps to a different OpenMRS domain object at submission time:\n\n- **`patientIdentifier`** \u2014 writes to a patient identifier of the specified `identifierType` instead of an observation.\n- **`personAttribute`** \u2014 writes to a person attribute of the specified `attributeType`.\n- **`testOrder`** \u2014 emits a lab order under the `orderType` at the given `orderSettingUuid`; the options the user can pick live in `selectableOrders`.\n- **`programState`** \u2014 changes the patient's workflow state inside a program; requires the `programUuid` and `workflowUuid` of the enrolment."
+              ]
+            }
+          ]
+        },
+        {
+          "label": "patientIdentifier",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "openmrsIdField",
+              "label": "OpenMRS ID",
+              "type": "patientIdentifier",
+              "questionOptions": {
+                "rendering": "text",
+                "identifierType": "05a29f94-c0ed-11e2-94be-8c13b969e334"
+              }
+            }
+          ]
+        },
+        {
+          "label": "personAttribute",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "phoneNumberField",
+              "label": "Phone number",
+              "type": "personAttribute",
+              "questionOptions": {
+                "rendering": "text",
+                "attributeType": "14d4f066-15f5-102d-96e4-000c29c2a5d7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "testOrder",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "labOrders",
+              "label": "Lab orders",
+              "type": "testOrder",
+              "questionOptions": {
+                "rendering": "repeating",
+                "orderSettingUuid": "6f0c9a92-6f24-11e3-af88-005056821db0",
+                "orderType": "testorder",
+                "selectableOrders": [
+                  {
+                    "concept": "5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "CD4"
+                  },
+                  {
+                    "concept": "856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Viral load"
+                  },
+                  {
+                    "concept": "1015AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Hemoglobin"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "programState",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "hivWorkflowState",
+              "label": "HIV treatment status",
+              "type": "programState",
+              "questionOptions": {
+                "rendering": "select",
+                "programUuid": "64f950e6-1b07-4ac0-8e7e-f3e148f3463f",
+                "workflowUuid": "70921392-4e3e-5465-978d-45b68b7def5f"
+              }
+            }
+          ]
+        }
+      ]
     }
-  ]
+  ],
+  "formOptions": {
+    "usePreviousValueDisabled": false
+  }
 }
