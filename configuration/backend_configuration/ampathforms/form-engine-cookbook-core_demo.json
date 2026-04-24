@@ -1,0 +1,403 @@
+{
+  "name": "Form Engine Cookbook",
+  "description": "Reference examples of the OpenMRS 3 form engine's features. Each page demonstrates one topic, with a short markdown explanation followed by working example fields. Not for clinical use; this form is deliberately unpublished so it does not appear in the patient chart.",
+  "version": "1",
+  "published": false,
+  "retired": false,
+  "encounter": "Consultation",
+  "processor": "EncounterFormProcessor",
+  "referencedForms": [],
+  "pages": [
+    {
+      "label": "Introduction",
+      "sections": [
+        {
+          "label": "About this form",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "cookbookIntro",
+              "questionOptions": { "rendering": "markdown" },
+              "value": [
+                "## Form Engine Cookbook\n\nThis form is a reference library of patterns supported by the OpenMRS 3 form engine. Each page focuses on one topic (conditional visibility, validators, computed fields, and so on) and opens with a short explanation followed by fields that exercise the pattern.\n\nOpen the JSON to copy the shape of any example into your own form. The questions here use real concepts from the reference-app demo metadata so the form also renders as-is in a dev deployment.\n\nThis form is `published: false` by design. It will not appear in the patient chart unless you flip that flag for local testing."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Conditional visibility",
+      "sections": [
+        {
+          "label": "About",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "visibilityIntro",
+              "questionOptions": { "rendering": "markdown" },
+              "value": [
+                "**`hide.hideWhenExpression`** hides a field when a JavaScript expression evaluates true. The expression has access to every other question by its `id`, plus the helpers in the engine's `common-expression-helpers` (e.g. `isEmpty`), plus the implicit patient-context globals `sex` and `age`.\n\n**`disabled.disableWhenExpression`** is the same idea for the disabled state: the field renders but is non-interactive while the expression is true.\n\n**`isDisabled`** is the static boolean form: the field is always disabled."
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Hide when expression",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "isPregnantAnchor",
+              "label": "Is the patient pregnant?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "5272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                ]
+              }
+            },
+            {
+              "id": "eddWhenPregnant",
+              "label": "Expected date of delivery",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(isPregnantAnchor) || isPregnantAnchor !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Disable when expression",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "pregnancyNotes",
+              "label": "Pregnancy notes (disabled until the anchor above is answered)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "disabled": {
+                "disableWhenExpression": "isEmpty(isPregnantAnchor)"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Static isDisabled",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "alwaysDisabled",
+              "label": "Read-only informational field (always disabled)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "160221AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "isDisabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Required variants",
+      "sections": [
+        {
+          "label": "About",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "requiredIntro",
+              "questionOptions": { "rendering": "markdown" },
+              "value": [
+                "The `required` property accepts three shapes:\n\n1. **Boolean** — `\"required\": true` makes the field unconditionally required.\n2. **String expression** — `\"required\": \"<jsExpression>\"` makes the field required only when the expression evaluates true. Expression scope matches `hide`.\n3. **Object with `type: \"conditionalAnswered\"`** — makes the field required when another field has been answered with one of a specified set of concept UUIDs. Useful for safety-plan-style branching where the engine enforces the linkage declaratively."
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Boolean required",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "visitTypeRequired",
+              "label": "Visit type (required)",
+              "type": "obs",
+              "required": true,
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  { "concept": "160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "New client" },
+                  { "concept": "160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Revisit" }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Expression-based required",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "travelHistoryAnchor",
+              "label": "History of recent travel?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "165656AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                ]
+              }
+            },
+            {
+              "id": "travelDestination",
+              "label": "Travel destination (required only when travel history is Yes)",
+              "type": "obs",
+              "required": "travelHistoryAnchor === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              }
+            }
+          ]
+        },
+        {
+          "label": "conditionalAnswered object",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "hivStatus",
+              "label": "HIV status",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "159576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  { "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Positive" },
+                  { "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Negative" },
+                  { "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Unknown" }
+                ]
+              }
+            },
+            {
+              "id": "hivDiagnosisDate",
+              "label": "Date of HIV diagnosis (required when HIV status is Positive)",
+              "type": "obs",
+              "required": {
+                "type": "conditionalAnswered",
+                "message": "Required when HIV status is Positive",
+                "referenceQuestionId": "hivStatus",
+                "referenceQuestionAnswers": ["703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
+              },
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "160554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Validators",
+      "sections": [
+        {
+          "label": "About",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "validatorsIntro",
+              "questionOptions": { "rendering": "markdown" },
+              "value": [
+                "Fields can declare a `validators` array. Each entry is an object with a `type` naming one of the engine's built-in validators:\n\n- **`js_expression`** — flags the field when `failsWhenExpression` evaluates true. The shape also accepts `message` for a custom error and `warningMessage` for the lighter variant. Good for cross-field and numeric-range checks.\n- **`date`** — rejects invalid dates, and optionally future dates via `allowFutureDates: 'false'`.\n- **`conditionalAnswered`** — fails when this field is empty and the referenced field has a specific answer. Same shape as the `required` object above, surfaced as a validator instead.\n- **`default_value`** — fails when the provided `defaultValue` isn't valid for the field's concept (e.g. a value that isn't in the coded answer list). Mostly useful to catch authoring mistakes at load time.\n\nA single field can carry several validators; the engine runs them all."
+              ]
+            }
+          ]
+        },
+        {
+          "label": "js_expression validator",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "monthsSinceHivTest",
+              "label": "Months since HIV test (warns if > 24)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "163191AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "0",
+                "max": "240"
+              },
+              "validators": [
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "myValue > 24",
+                  "warningMessage": "HIV test older than 24 months; consider repeating"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "date validator",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "onsetDate",
+              "label": "Onset date (future dates not allowed)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": [
+                { "type": "date", "allowFutureDates": "false" }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "conditionalAnswered validator",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "travelAnchorForValidator",
+              "label": "History of recent travel?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "165656AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Yes" },
+                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                ]
+              }
+            },
+            {
+              "id": "travelDurationDays",
+              "label": "Travel duration in days (validator-enforced when travel = Yes)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "1731AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "1"
+              },
+              "validators": [
+                {
+                  "type": "conditionalAnswered",
+                  "message": "Travel duration is expected when travel history is Yes",
+                  "referenceQuestionId": "travelAnchorForValidator",
+                  "referenceQuestionAnswers": ["1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Computed fields",
+      "sections": [
+        {
+          "label": "About",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "computedIntro",
+              "questionOptions": { "rendering": "markdown" },
+              "value": [
+                "Fields can be computed from other fields via `questionOptions.calculate.calculateExpression`. The expression is evaluated whenever dependencies change and the result is written into this field.\n\nThe `common-expression-helpers` module exposes a library of domain helpers usable inside these expressions: `calcBMI(height, weight)`, `calcEDD(lmp)`, `calcAgeBasedOnDate(dob)`, `calcBSA(height, weight)`, `calcMonthsOnART(artStartDate)`, `calcGravida`, plus the z-score family (`calcWeightForHeightZscore`, `calcBMIForAgeZscore`, `calcHeightForAgeZscore`). Also available: `today()`, `isDateBefore` / `isDateAfter`, `addDaysToDate`, `addWeeksToDate`, `arrayContains`, `arrayContainsAny`, `isEmpty`, `formatDate`, `parseDate`.\n\nFields referenced by id resolve to their current value at evaluation time."
+              ]
+            }
+          ]
+        },
+        {
+          "label": "BMI from weight and height",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "weight",
+              "label": "Weight (kg)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "0",
+                "max": "250",
+                "step": 0.1
+              }
+            },
+            {
+              "id": "height",
+              "label": "Height (cm)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "10",
+                "max": "272",
+                "step": 0.1
+              }
+            },
+            {
+              "id": "bmi",
+              "label": "BMI (computed)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "1342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "disallowDecimals": false,
+                "calculate": {
+                  "calculateExpression": "calcBMI(height, weight)"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "EDD from LMP",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "lmp",
+              "label": "Last menstrual period",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "1427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": [
+                { "type": "date", "allowFutureDates": "false" }
+              ]
+            },
+            {
+              "id": "computedEdd",
+              "label": "Expected date of delivery (computed)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "calculate": {
+                  "calculateExpression": "calcEDD(lmp)"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
