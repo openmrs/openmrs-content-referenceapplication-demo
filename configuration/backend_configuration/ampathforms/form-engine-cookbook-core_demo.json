@@ -6,7 +6,12 @@
   "retired": false,
   "encounter": "Consultation",
   "processor": "EncounterFormProcessor",
-  "referencedForms": [],
+  "referencedForms": [
+    {
+      "formName": "Form Engine Cookbook Library",
+      "alias": "lib"
+    }
+  ],
   "pages": [
     {
       "label": "Introduction",
@@ -729,9 +734,431 @@
           ]
         }
       ]
+    },
+    {
+      "label": "Form-level metadata",
+      "sections": [
+        {
+          "label": "About",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "formMetaIntro",
+              "questionOptions": {
+                "rendering": "markdown"
+              },
+              "value": [
+                "Several features live at the form root rather than on any single field:\n\n- **`availableIntents`** \u2014 named modes the form can open in. The engine passes the active intent to every field, letting `behaviours` overrides tailor the form per mode.\n- **`behaviours`** (on a field) \u2014 an array of per-intent overrides that replace the field's `required`, `hide`, or `disabled` for a given intent.\n- **`postSubmissionActions`** \u2014 actions the engine runs after a successful save (e.g. enroll the patient in a program, schedule a visit). Each entry has an `actionId` matching a registered action and an optional `enabled` JS expression.\n- **`translations`** \u2014 a flat map of key-to-translation pairs embedded in the form JSON. An alternative to the separate `ampathformstranslations/` files managed by Iniz.\n- **`meta.programs`** \u2014 flags the form as program-aware, letting the engine load the patient's program enrolment context.\n- **`defaultPage`**, **`allowUnspecifiedAll`** \u2014 form-wide defaults.\n\nScroll to the root of this JSON to see all of the above set. This page illustrates the `behaviours` override on a field."
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Per-intent behaviours",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "eligibilityScreen",
+              "label": "Eligibility screen",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "New client"
+                  },
+                  {
+                    "concept": "160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Revisit"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "COOKBOOK_BASELINE",
+                  "required": true
+                },
+                {
+                  "intent": "COOKBOOK_FOLLOWUP",
+                  "required": false,
+                  "hide": {
+                    "hideWhenExpression": "true"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Composition",
+      "sections": [
+        {
+          "label": "About",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "compositionIntro",
+              "questionOptions": {
+                "rendering": "markdown"
+              },
+              "value": [
+                "Two ways to share content between forms:\n\n- **Section `reference`** \u2014 a section in one form pulls its questions from a section in another form, named via `referencedForms` at root. Useful for centralising shared snippets (vitals, demographics) across many forms.\n- **Page `isSubform` + `subform`** \u2014 a page embeds an entire other form inline. The inner form's own encounter and processor still apply; the outer form acts as a container.\n\nThe companion file `form-engine-cookbook-library-core_demo.json` supplies the referenced section below."
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Vitals snippet (referenced from library)",
+          "isExpanded": "true",
+          "reference": {
+            "form": "lib",
+            "page": "Vitals",
+            "section": "Vitals snippet"
+          },
+          "questions": []
+        }
+      ]
+    },
+    {
+      "label": "Subform page",
+      "isSubform": true,
+      "subform": {
+        "name": "Vitals subform",
+        "form": {
+          "name": "Vitals subform",
+          "pages": [
+            {
+              "label": "Vitals",
+              "sections": [
+                {
+                  "label": "Vitals snippet",
+                  "isExpanded": "true",
+                  "questions": [
+                    {
+                      "id": "subWeight",
+                      "label": "Weight (kg)",
+                      "type": "obs",
+                      "questionOptions": {
+                        "rendering": "number",
+                        "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "min": "0",
+                        "max": "250"
+                      }
+                    },
+                    {
+                      "id": "subHeight",
+                      "label": "Height (cm)",
+                      "type": "obs",
+                      "questionOptions": {
+                        "rendering": "number",
+                        "concept": "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "min": "10",
+                        "max": "272"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "processor": "EncounterFormProcessor",
+          "uuid": "cookbook-subform-uuid-placeholder",
+          "referencedForms": [],
+          "encounterType": "dd528487-82a5-4082-9c72-ed246bd49591"
+        }
+      },
+      "sections": []
+    },
+    {
+      "label": "Question-option grab bag",
+      "sections": [
+        {
+          "label": "About",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "qoGrabBagIntro",
+              "questionOptions": {
+                "rendering": "markdown"
+              },
+              "value": [
+                "A sweep of the remaining `questionOptions` keys the engine recognises. Each section demonstrates one key."
+              ]
+            }
+          ]
+        },
+        {
+          "label": "orientation (radio layout)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "horizontalRadio",
+              "label": "HIV status (horizontal radio)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "159576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "orientation": "horizontal",
+                "answers": [
+                  {
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "locationTag (filter location picker)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "admitLocation",
+              "label": "Admission location",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "locationTag": "Admission Location"
+              }
+            }
+          ]
+        },
+        {
+          "label": "weeksList (gestational weeks helper)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "gestationWeeks",
+              "label": "Gestational age",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "1279AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "weeksList": [
+                  4,
+                  8,
+                  12,
+                  16,
+                  20,
+                  24,
+                  28,
+                  32,
+                  36,
+                  40
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "shownDateOptions (attach a date to an obs)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "symptomWithDate",
+              "label": "Primary symptom (with onset date)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "showDate": "true",
+                "shownDateOptions": {
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "showComment (attach a comment to an obs)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "hivStatusWithComment",
+              "label": "HIV status (with comment field)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "159576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "showComment": true,
+                "answers": [
+                  {
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "diagnosis (rank, concept set)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "primaryDiagnosis",
+              "label": "Primary diagnosis",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "problem",
+                "concept": "161602AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "diagnosis": {
+                  "rank": 1,
+                  "isConfirmed": true,
+                  "conceptClasses": [
+                    "Diagnosis"
+                  ],
+                  "conceptSet": "160170AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "allowMultiple + isSearchable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "multiMedications",
+              "label": "Current medications (multiple, searchable)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "drug",
+                "concept": "1193AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "allowMultiple": true,
+                "isSearchable": true
+              }
+            }
+          ]
+        },
+        {
+          "label": "isCheckboxSearchable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "searchableCheckbox",
+              "label": "Findings (searchable checkbox group)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox-searchable",
+                "concept": "162737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "isCheckboxSearchable": true,
+                "answers": [
+                  {
+                    "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Normal"
+                  },
+                  {
+                    "concept": "1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Abnormal"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "allowedFileTypes",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "attachedScan",
+              "label": "Upload operative note (PDF or image)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "file",
+                "concept": "165959AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "allowedFileTypes": [
+                  "pdf",
+                  "jpg",
+                  "png"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "isTransient (excluded from submission)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "transientWorkingValue",
+              "label": "Scratchpad \u2014 this value is not saved",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "isTransient": true
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "formOptions": {
     "usePreviousValueDisabled": false
-  }
+  },
+  "availableIntents": [
+    {
+      "intent": "COOKBOOK_BASELINE",
+      "display": "Baseline"
+    },
+    {
+      "intent": "COOKBOOK_FOLLOWUP",
+      "display": "Follow-up"
+    },
+    {
+      "intent": "*",
+      "display": "All"
+    }
+  ],
+  "postSubmissionActions": [
+    {
+      "actionId": "ProgramEnrollmentSubmissionAction",
+      "enabled": "hivStatus === '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+      "config": {
+        "programUuid": "64f950e6-1b07-4ac0-8e7e-f3e148f3463f",
+        "enrollmentDate": "encDate"
+      }
+    }
+  ],
+  "translations": {
+    "Yes": "Oui",
+    "No": "Non",
+    "Weight (kg)": "Poids (kg)",
+    "Height (cm)": "Taille (cm)"
+  },
+  "meta": {
+    "programs": {
+      "hasProgramFields": true,
+      "isEnrollment": false,
+      "uuid": "64f950e6-1b07-4ac0-8e7e-f3e148f3463f"
+    }
+  },
+  "defaultPage": "Introduction",
+  "allowUnspecifiedAll": true
 }
