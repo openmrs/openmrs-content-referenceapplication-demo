@@ -114,7 +114,6 @@
                 "concept": "1390AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "repeating"
               },
-              "validators": [],
               "questions": [
                 {
                   "label": "Complaint",
@@ -427,7 +426,6 @@
                     "concept": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "rendering": "textarea"
                   },
-                  "validators": [],
                   "hide": {
                     "hideWhenExpression": "Complaint !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -458,8 +456,7 @@
                     "calculate": {
                       "calculateExpression": "calcTimeDifference(complaintsOnset, 'd')"
                     }
-                  },
-                  "validators": []
+                  }
                 }
               ]
             },
@@ -470,8 +467,7 @@
               "questionOptions": {
                 "concept": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "textarea"
-              },
-              "validators": []
+              }
             }
           ]
         },
@@ -819,7 +815,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "age < 3"
               },
@@ -843,7 +838,6 @@
                   }
                 ]
               },
-              "validators": [],
               "alert": {
                 "alertWhenExpression": "myValue > 12",
                 "message": "Client may be eligible for a HIV test if there are risk factors"
@@ -924,7 +918,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "age < 14"
               }
@@ -969,7 +962,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "isEmpty(sexPartner) || sexPartner !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || age < 14"
               }
@@ -998,7 +990,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "isEmpty(sexPartner) || sexPartner !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || age < 14"
               }
@@ -1104,7 +1095,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "isEmpty(pregnancy) || sex !== 'F' && (age < 14 || age > 49) || pregnancy === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               },
@@ -1192,7 +1182,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "!arrayContains(['965AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA','1360AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'], fPlanning) || (age < 14 || age > 49) || sex !== 'F'"
               }
@@ -1215,7 +1204,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "!arrayContains(['965AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA','1360AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'], fPlanning) || (age < 14 || age > 49) || sex !== 'M'"
               },
@@ -1432,7 +1420,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "isEmpty(substanceUse) || substanceUse !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || age < 10"
               },
@@ -1464,8 +1451,7 @@
               "questionOptions": {
                 "concept": "61675c28-e628-4173-bc65-d5e0df78a6da",
                 "rendering": "textarea"
-              },
-              "validators": []
+              }
             }
           ]
         },
@@ -1568,8 +1554,7 @@
                     "disableWhenExpression": "myValue === '1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "General Examination Notes",
@@ -1578,8 +1563,7 @@
               "questionOptions": {
                 "concept": "163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "textarea"
-              },
-              "validators": []
+              }
             }
           ]
         },
@@ -2352,7 +2336,6 @@
                 "concept": "159947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "repeating"
               },
-              "validators": [],
               "questions": [
                 {
                   "label": "Diagnosis",
@@ -2388,8 +2371,7 @@
                         "label": "Final diagnosis"
                       }
                     ]
-                  },
-                  "validators": []
+                  }
                 },
                 {
                   "label": "Diagnosis order",
@@ -2422,8 +2404,7 @@
                 "concept": "161602AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [],
                 "answers": []
-              },
-              "validators": []
+              }
             },
             {
               "label": "Problem List",
@@ -2621,8 +2602,7 @@
                     "label": "Other non-coded"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Reason for referral (text)",
@@ -2634,8 +2614,7 @@
                 "concept": "164359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [],
                 "answers": []
-              },
-              "validators": []
+              }
             }
           ]
         },
@@ -2662,8 +2641,7 @@
                     "label": "No"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Appointments",
@@ -2699,8 +2677,7 @@
                 "concept": "162169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [],
                 "answers": []
-              },
-              "validators": []
+              }
             }
           ]
         }

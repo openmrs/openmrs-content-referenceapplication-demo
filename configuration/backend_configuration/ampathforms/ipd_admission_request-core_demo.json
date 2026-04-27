@@ -1,6 +1,5 @@
 {
   "name": "Ward Admission",
-  "encounter": "Admission",
   "pages": [
     {
       "label": "Ward Request",
