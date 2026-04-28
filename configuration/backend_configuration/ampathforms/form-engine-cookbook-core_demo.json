@@ -6,12 +6,6 @@
   "retired": false,
   "encounter": "Consultation",
   "processor": "EncounterFormProcessor",
-  "referencedForms": [
-    {
-      "formName": "Form Engine Cookbook Library",
-      "alias": "lib"
-    }
-  ],
   "pages": [
     {
       "label": "Introduction",
@@ -26,7 +20,7 @@
                 "rendering": "markdown"
               },
               "value": [
-                "## Form Engine Cookbook\n\nThis form is a reference library of patterns supported by the OpenMRS 3 form engine. Each page focuses on one topic (conditional visibility, validators, computed fields, and so on) and opens with a short explanation followed by fields that exercise the pattern.\n\nOpen the JSON to copy the shape of any example into your own form. The questions here use real concepts from the reference-app demo metadata so the form also renders as-is in a dev deployment.\n\nThis form is `published: false` by design. It will not appear in the patient chart unless you flip that flag for local testing."
+                "## Form Engine Cookbook\n\nA working reference for the patterns supported by the OpenMRS 3 form engine. Each page covers one authoring task — making a field appear conditionally, requiring a value when something else is answered, computing a value from other fields, and so on — with a short explanation followed by fields that exercise the pattern.\n\nOpen the JSON to copy the shape of any example into your own form. Most fields use real concepts from the reference-app demo metadata so the form renders end-to-end in a dev distro.\n\nThis form is `published: false` by design. It will not appear in the patient chart unless you flip that flag for local testing."
               ]
             }
           ]
@@ -46,7 +40,7 @@
                 "rendering": "markdown"
               },
               "value": [
-                "**`hide.hideWhenExpression`** hides a field when a JavaScript expression evaluates true. The expression has access to every other question by its `id`, plus the helpers in the engine's `common-expression-helpers` (e.g. `isEmpty`), plus the implicit patient-context globals `sex` and `age`.\n\n**`disabled.disableWhenExpression`** is the same idea for the disabled state: the field renders but is non-interactive while the expression is true.\n\n**`isDisabled`** is the static boolean form: the field is always disabled."
+                "**You want a field to appear only when another answer is set** — for example, a follow-up question that is only relevant after a specific symptom is selected, or a pregnancy section that should only show for a female patient of reproductive age.\n\nUse **`hide.hideWhenExpression`** to hide a field while a condition is true. The condition is a small JavaScript snippet with access to:\n\n- any other question on the form, by its `id`\n- the patient's `sex` and `age` (always available)\n- helpers such as `isEmpty(value)`, `arrayContains(list, value)`\n\n```json\n\"hide\": { \"hideWhenExpression\": \"isEmpty(symptomChoice) || symptomChoice !== 'OTHER_UUID'\" }\n```\n\nUse **`disabled.disableWhenExpression`** when you want the field visible but not interactive — e.g. greyed out until a prerequisite field is answered. Use **`isDisabled: true`** for a field that is always disabled (rare; usually you want one of the expressions above)."
               ]
             }
           ]
@@ -137,7 +131,7 @@
                 "rendering": "markdown"
               },
               "value": [
-                "The `required` property accepts three shapes:\n\n1. **Boolean** \u2014 `\"required\": true` makes the field unconditionally required.\n2. **String expression** \u2014 `\"required\": \"<jsExpression>\"` makes the field required only when the expression evaluates true. Expression scope matches `hide`.\n3. **Object with `type: \"conditionalAnswered\"`** \u2014 makes the field required when another field has been answered with one of a specified set of concept UUIDs. Useful for safety-plan-style branching where the engine enforces the linkage declaratively."
+                "**You want a field to be mandatory** — sometimes always, sometimes only under specific conditions. The `required` property covers all three cases:\n\n1. **Always required** — set `\"required\": true`. Use this when the field must be answered for the form to be valid, no exceptions.\n\n2. **Required only sometimes** — set `\"required\"` to a JavaScript expression string. The field becomes required only while the expression is true. Same expression scope as `hide`.\n\n   ```json\n   \"required\": \"isEmpty(reasonForVisit) === false\"\n   ```\n\n3. **Required when another field has a specific answer** — set `\"required\"` to an object with `type: \"conditionalAnswered\"`. Useful when downstream questions are mandatory once an upstream answer is picked (e.g. a safety-plan flow where every \"Yes\" branch must be filled in).\n\n   ```json\n   \"required\": {\n     \"type\": \"conditionalAnswered\",\n     \"referenceQuestionId\": \"hasRiskFactors\",\n     \"referenceQuestionAnswers\": [\"YES_UUID\"]\n   }\n   ```"
               ]
             }
           ]
@@ -264,7 +258,7 @@
                 "rendering": "markdown"
               },
               "value": [
-                "Fields can declare a `validators` array. Each entry is an object with a `type` naming one of the engine's built-in validators:\n\n- **`js_expression`** \u2014 flags the field when `failsWhenExpression` evaluates true. The shape also accepts `message` for a custom error and `warningMessage` for the lighter variant. Good for cross-field and numeric-range checks.\n- **`date`** \u2014 rejects invalid dates, and optionally future dates via `allowFutureDates: 'false'`.\n- **`conditionalAnswered`** \u2014 fails when this field is empty and the referenced field has a specific answer. Same shape as the `required` object above, surfaced as a validator instead.\n- **`default_value`** \u2014 fails when the provided `defaultValue` isn't valid for the field's concept (e.g. a value that isn't in the coded answer list). Mostly useful to catch authoring mistakes at load time.\n\nA single field can carry several validators; the engine runs them all."
+                "**You want the engine to reject a value beyond just \"is it filled in\"** — for example, a temperature outside a plausible range, a date in the future when it shouldn't be, or a field that must be filled in once another field has a particular answer.\n\nAdd a `validators` array to the field. Each entry is an object with a `type`. The built-in validators:\n\n- **`js_expression`** — flag the field when an expression is true. Accepts `failsWhenExpression`, optional `message` (custom error) and `warningMessage` (lighter, non-blocking variant). Best for cross-field rules and numeric ranges.\n\n  ```json\n  { \"type\": \"js_expression\", \"failsWhenExpression\": \"myValue > 200\", \"message\": \"Heart rate looks too high\" }\n  ```\n\n- **`date`** — reject invalid dates; pass `allowFutureDates: 'false'` to also reject future dates.\n\n- **`conditionalAnswered`** — fail when this field is empty and another field has a specific answer. Same shape as the conditional `required` above, just surfaced as a validator (the user sees an error rather than a silent requirement flip).\n\n- **`default_value`** — catch authoring mistakes: fails when a `defaultValue` set on the field isn't valid for the concept (e.g. a value that isn't in the coded answer list).\n\nA field can carry several validators; the engine runs them all and surfaces every failure."
               ]
             }
           ]
@@ -374,7 +368,7 @@
                 "rendering": "markdown"
               },
               "value": [
-                "Fields can be computed from other fields via `questionOptions.calculate.calculateExpression`. The expression is evaluated whenever dependencies change and the result is written into this field.\n\nThe `common-expression-helpers` module exposes a library of domain helpers usable inside these expressions: `calcBMI(height, weight)`, `calcEDD(lmp)`, `calcAgeBasedOnDate(dob)`, `calcBSA(height, weight)`, `calcMonthsOnART(artStartDate)`, `calcGravida`, plus the z-score family (`calcWeightForHeightZscore`, `calcBMIForAgeZscore`, `calcHeightForAgeZscore`). Also available: `today()`, `isDateBefore` / `isDateAfter`, `addDaysToDate`, `addWeeksToDate`, `arrayContains`, `arrayContainsAny`, `isEmpty`, `formatDate`, `parseDate`.\n\nFields referenced by id resolve to their current value at evaluation time."
+                "**You want one field to be computed from others** — BMI from height and weight, expected delivery date from a last-menstrual-period date, age from date of birth, days-since-onset from an onset date.\n\nSet `questionOptions.calculate.calculateExpression` to a JavaScript expression. The engine re-evaluates it whenever a referenced field changes and writes the result into this field.\n\n```json\n\"questionOptions\": {\n  \"rendering\": \"number\",\n  \"concept\": \"<bmi-concept-uuid>\",\n  \"calculate\": { \"calculateExpression\": \"calcBMI(height, weight)\" }\n}\n```\n\nInside the expression you have a domain-helper library (`calcBMI`, `calcEDD`, `calcAgeBasedOnDate`, `calcBSA`, `calcMonthsOnART`, `calcGravida`, the z-score family `calcWeightForHeightZscore` / `calcBMIForAgeZscore` / `calcHeightForAgeZscore`) plus general helpers (`today()`, `isDateBefore`, `isDateAfter`, `addDaysToDate`, `addWeeksToDate`, `arrayContains`, `arrayContainsAny`, `isEmpty`, `formatDate`, `parseDate`).\n\nRefer to other fields by their `id`; the engine substitutes the current value at evaluation time."
               ]
             }
           ]
@@ -470,7 +464,7 @@
                 "rendering": "markdown"
               },
               "value": [
-                "Three complementary features let a form surface data from the patient's prior encounters:\n\n- **`formOptions.usePreviousValueDisabled`** at the form root. When `true`, the per-question 'copy previous value' affordance is hidden across the whole form. Default is `false` (the affordance appears).\n- **`questionOptions.enablePreviousValue`** at the question level. An explicit opt-in for questions that should display the prior value as a fill hint, overriding silence at the form level.\n- **`field.historicalExpression`** \u2014 a JS expression that resolves to a value from a prior encounter and pre-populates the field when the form opens. The engine exposes the `HD` helper, e.g. `HD.getObject('prevEnc').getValue('<conceptUuid>')`, to walk the patient's encounter history."
+                "**You want the form to surface what was captured for this patient last time** — either as a starting point the user can override, or as the default when the field is left blank.\n\nThree complementary controls cover this:\n\n- **`formOptions.usePreviousValueDisabled`** at the form root. When `true`, the per-question \"copy previous value\" affordance is hidden everywhere on the form. Default is `false` (the affordance shows on every applicable question). Set to `true` when prior values would be misleading (e.g. an acute-care form).\n\n- **`questionOptions.enablePreviousValue`** at the question level. An explicit per-field opt-in for showing the prior value as a fill hint. Use this to bring the affordance back on a single field after disabling it form-wide.\n\n- **`field.historicalExpression`** — pre-fills the field automatically when the form opens, by walking the patient's encounter history. Most common shape:\n\n  ```json\n  \"historicalExpression\": \"_.isEmpty(HD.getObject('prevEnc').getValue('<concept-uuid>')) ? undefined : HD.getObject('prevEnc').getValue('<concept-uuid>')\"\n  ```\n\n  The `HD` helper exposes prior encounters; the snippet above pulls the most recent observation for a given concept."
               ]
             }
           ]
@@ -481,7 +475,7 @@
           "questions": [
             {
               "id": "weightForPrev",
-              "label": "Weight (kg) \u2014 previous-value hint enabled",
+              "label": "Weight (kg) — previous-value hint enabled",
               "type": "obs",
               "questionOptions": {
                 "rendering": "number",
@@ -538,7 +532,7 @@
                 "rendering": "markdown"
               },
               "value": [
-                "Beyond the common `text`, `number`, `date`, `radio`, `checkbox`, and `select` renderings, the engine offers a handful of specialised ones:\n\n- **`toggle`** \u2014 a yes/no toggle backed by a coded concept. Use `toggleOptions.labelTrue` / `labelFalse` to customise the labels.\n- **`content-switcher`** \u2014 a Carbon ContentSwitcher for a small number of answer options (typically 2-5).\n- **`fixed-value`** \u2014 writes a preset value without user interaction. Useful for default-captured data like a standard encounter sub-type.\n- **`select-concept-answers`** \u2014 a dropdown whose options are read from the concept's answer set on the server, so the form doesn't have to enumerate them.\n- **`extension-widget`** \u2014 embeds a named O3 extension slot into the form. Useful when a third-party module contributes a widget (e.g. a summary card) that needs to live inside the form's flow."
+                "**You want a control other than the standard text/number/date/radio/checkbox/select** — for cases where one of those would technically work but a more specialised widget reads better.\n\nThe engine ships several extras:\n\n- **`toggle`** — a yes/no switch backed by a coded concept. Customise the labels with `toggleOptions.labelTrue` / `labelFalse`. Best when the field is binary and a checkbox would feel ambiguous.\n\n- **`content-switcher`** — a Carbon ContentSwitcher for a small set of answers (typically 2–5). Reads as segmented buttons; saves a click compared to a dropdown for short lists.\n\n- **`fixed-value`** — writes a preset value without showing any control. Useful for capturing a default like an encounter sub-type that the user never picks.\n\n- **`select-concept-answers`** — a dropdown whose options come from the concept's coded-answer set on the server. Saves you from enumerating answers in the schema, at the cost of a server fetch.\n\n- **`extension-widget`** — embeds a named O3 extension slot inside the form. Use when a separate module contributes a widget (e.g. a summary card) that needs to live in the form's flow."
               ]
             }
           ]
@@ -652,7 +646,7 @@
                 "rendering": "markdown"
               },
               "value": [
-                "Beyond `obs` and `obsGroup`, the engine supports several specialised field types. Each one maps to a different OpenMRS domain object at submission time:\n\n- **`patientIdentifier`** \u2014 writes to a patient identifier of the specified `identifierType` instead of an observation.\n- **`personAttribute`** \u2014 writes to a person attribute of the specified `attributeType`.\n- **`testOrder`** \u2014 emits a lab order under the `orderType` at the given `orderSettingUuid`; the options the user can pick live in `selectableOrders`.\n- **`programState`** \u2014 changes the patient's workflow state inside a program; requires the `programUuid` and `workflowUuid` of the enrolment."
+                "**You want the field to save somewhere other than an observation** — to a patient identifier, a person attribute, a lab order, or a program workflow state.\n\nThe engine maps each `type` to a different OpenMRS domain object at submission time:\n\n- **`patientIdentifier`** — writes a patient identifier of the specified `identifierType`. Useful for capturing or updating MRNs and other registration identifiers from inside a clinical form.\n\n- **`personAttribute`** — writes a person attribute of the specified `attributeType`. Useful for non-identifier demographics like preferred-language or telephone-number.\n\n- **`testOrder`** — emits a lab order under the configured `orderType` and `orderSettingUuid`. The orders the user can pick come from `selectableOrders`.\n\n- **`programState`** — moves the patient to a different state in a program workflow. Requires the `programUuid` and `workflowUuid` of the enrolment."
               ]
             }
           ]
@@ -722,14 +716,13 @@
           "isExpanded": "true",
           "questions": [
             {
-              "id": "hivWorkflowState",
-              "label": "HIV treatment status",
-              "type": "programState",
+              "id": "programStateExplainer",
               "questionOptions": {
-                "rendering": "select",
-                "programUuid": "64f950e6-1b07-4ac0-8e7e-f3e148f3463f",
-                "workflowUuid": "70921392-4e3e-5465-978d-45b68b7def5f"
-              }
+                "rendering": "markdown"
+              },
+              "value": [
+                "A `programState` field changes the patient's workflow state inside a program enrolment. The shape is:\n\n```json\n{\n  \"id\": \"hivWorkflowState\",\n  \"label\": \"HIV treatment status\",\n  \"type\": \"programState\",\n  \"questionOptions\": {\n    \"rendering\": \"select\",\n    \"programUuid\": \"<program-uuid>\",\n    \"workflowUuid\": \"<workflow-uuid>\"\n  }\n}\n```\n\nThe engine fetches the workflow's possible states from the backend at render time, so the field can only be exercised against a distro that has the program and workflow loaded. The cookbook documents the shape rather than embedding a live field, since the form-builder preview has no enrolment context to render against."
+              ]
             }
           ]
         }
@@ -748,7 +741,7 @@
                 "rendering": "markdown"
               },
               "value": [
-                "Several features live at the form root rather than on any single field:\n\n- **`availableIntents`** \u2014 named modes the form can open in. The engine passes the active intent to every field, letting `behaviours` overrides tailor the form per mode.\n- **`behaviours`** (on a field) \u2014 an array of per-intent overrides that replace the field's `required`, `hide`, or `disabled` for a given intent.\n- **`postSubmissionActions`** \u2014 actions the engine runs after a successful save (e.g. enroll the patient in a program, schedule a visit). Each entry has an `actionId` matching a registered action and an optional `enabled` JS expression.\n- **`translations`** \u2014 a flat map of key-to-translation pairs embedded in the form JSON. An alternative to the separate `ampathformstranslations/` files managed by Iniz.\n- **`meta.programs`** \u2014 flags the form as program-aware, letting the engine load the patient's program enrolment context.\n- **`defaultPage`**, **`allowUnspecifiedAll`** \u2014 form-wide defaults.\n\nScroll to the root of this JSON to see all of the above set. This page illustrates the `behaviours` override on a field."
+                "**You want behaviour that lives at the form level rather than on a single field** — different modes the form can open in, things to run after a successful save, embedded translations.\n\nThese root-level options cover those needs:\n\n- **`availableIntents`** — named modes the form can open in (e.g. \"first-visit\" vs \"follow-up\"). The active intent is passed to every field, so individual fields can adapt.\n\n- **`behaviours`** (on a field) — per-intent overrides that swap out the field's `required`, `hide`, or `disabled` for a given intent. Lets one form schema serve multiple use cases.\n\n- **`postSubmissionActions`** — actions that run after a successful save (e.g. enroll the patient in a program, schedule a follow-up visit). Each entry has an `actionId` matching a registered action and an optional `enabled` JS expression.\n\n- **`translations`** — a flat key-to-translation map embedded directly in the form. An alternative to the separate `ampathformstranslations/` files Iniz supports.\n\n- **`meta.programs`** — flags the form as program-aware so the engine loads the patient's enrolment context.\n\n- **`defaultPage`**, **`allowUnspecifiedAll`** — form-wide defaults.\n\nScroll to the root of this JSON to see all of the above set. The field below illustrates a `behaviours` override."
               ]
             }
           ]
@@ -807,72 +800,89 @@
                 "rendering": "markdown"
               },
               "value": [
-                "Two ways to share content between forms:\n\n- **Section `reference`** \u2014 a section in one form pulls its questions from a section in another form, named via `referencedForms` at root. Useful for centralising shared snippets (vitals, demographics) across many forms.\n- **Page `isSubform` + `subform`** \u2014 a page embeds an entire other form inline. The inner form's own encounter and processor still apply; the outer form acts as a container.\n\nThe companion file `form-engine-cookbook-library-core_demo.json` supplies the referenced section below."
+                "**You want to reuse content across multiple forms** — share a \"Vitals\" snippet between every consultation form, or compose a multi-encounter workflow without duplicating fields.\n\nTwo patterns cover this:\n\n- **Section `reference`** — a section in this form pulls its questions from a section in another form. Good for sharing snippets across forms (vitals, demographics) without copy-paste.\n\n- **Page `isSubform` + `subform`** — a page embeds an entire other form inline. The inner form submits its own encounter; the outer form acts as a container. Good for forms that need to capture multiple sibling encounters in one go.\n\nBoth patterns render via the chart-side pipeline at runtime, so the form-builder preview can only show their structure, not a live composed render. The pages below document each shape."
               ]
             }
           ]
         },
         {
-          "label": "Vitals snippet (referenced from library)",
+          "label": "Reference pattern (how it looks in a real form)",
           "isExpanded": "true",
-          "reference": {
-            "form": "lib",
-            "page": "Vitals",
-            "section": "Vitals snippet"
-          },
-          "questions": []
+          "questions": [
+            {
+              "id": "referencePatternExplainer",
+              "questionOptions": {
+                "rendering": "markdown"
+              },
+              "value": [
+                "In a real form you'd reference a section from another form by declaring `referencedForms` at the root and then using `section.reference` to pull it in. The section's `questions` array is ignored when `reference` is set; the engine fills it from the target form at load time.\n\n```json\n// at form root\n\"referencedForms\": [\n  { \"formName\": \"Form Engine Cookbook Library\", \"alias\": \"lib\" }\n]\n\n// on any section\n{\n  \"label\": \"Vitals snippet (referenced)\",\n  \"isExpanded\": \"true\",\n  \"reference\": {\n    \"form\": \"lib\",\n    \"page\": \"Vitals\",\n    \"section\": \"Vitals snippet\"\n  },\n  \"questions\": []\n}\n```\n\nThe companion file `form-engine-cookbook-library-core_demo.json` is the target form, so once Iniz imports it the pattern works end-to-end. The section below renders the same vitals inline so you can see them without loading the library."
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Vitals snippet (inline, equivalent to the reference)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "compositionWeight",
+              "label": "Weight (kg)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "0",
+                "max": "250",
+                "step": 0.1
+              }
+            },
+            {
+              "id": "compositionHeight",
+              "label": "Height (cm)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "10",
+                "max": "272",
+                "step": 0.1
+              }
+            },
+            {
+              "id": "compositionTemperature",
+              "label": "Temperature",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "25",
+                "max": "43",
+                "step": 0.1
+              }
+            }
+          ]
         }
       ]
     },
     {
-      "label": "Subform page",
-      "isSubform": true,
-      "subform": {
-        "name": "Vitals subform",
-        "form": {
-          "name": "Vitals subform",
-          "pages": [
+      "label": "Subform pattern",
+      "sections": [
+        {
+          "label": "About",
+          "isExpanded": "true",
+          "questions": [
             {
-              "label": "Vitals",
-              "sections": [
-                {
-                  "label": "Vitals snippet",
-                  "isExpanded": "true",
-                  "questions": [
-                    {
-                      "id": "subWeight",
-                      "label": "Weight (kg)",
-                      "type": "obs",
-                      "questionOptions": {
-                        "rendering": "number",
-                        "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "min": "0",
-                        "max": "250"
-                      }
-                    },
-                    {
-                      "id": "subHeight",
-                      "label": "Height (cm)",
-                      "type": "obs",
-                      "questionOptions": {
-                        "rendering": "number",
-                        "concept": "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "min": "10",
-                        "max": "272"
-                      }
-                    }
-                  ]
-                }
+              "id": "subformPatternExplainer",
+              "questionOptions": {
+                "rendering": "markdown"
+              },
+              "value": [
+                "A page can declare `isSubform: true` and embed an entire form schema under `subform.form`. The engine treats that nested schema as a self-contained form that submits its own encounter using the `processor`, `encounterType`, and `uuid` declared on the subform.\n\n```json\n{\n  \"label\": \"Subform page\",\n  \"isSubform\": true,\n  \"subform\": {\n    \"name\": \"Vitals subform\",\n    \"form\": {\n      \"name\": \"Vitals subform\",\n      \"pages\": [ /* ...nested pages with their own sections and questions... */ ],\n      \"processor\": \"EncounterFormProcessor\",\n      \"uuid\": \"<subform-form-uuid>\",\n      \"encounterType\": \"<subform-encounter-type-uuid>\"\n    }\n  },\n  \"sections\": []\n}\n```\n\nUse this when you need a sibling encounter created alongside the parent encounter (e.g. a vitals encounter inside a consultation form). The subform's fields don't need top-level `meta` initialization in the parent form schema; the engine wires them up via its subform pipeline at runtime in the patient chart.\n\nThis cookbook intentionally documents the pattern instead of embedding a working subform: the form-builder preview renders subforms via the chart-side pipeline, so a live subform can only be exercised in a real distro. The Composition page above already shows the inline-vitals shape that a subform would otherwise compose."
               ]
             }
-          ],
-          "processor": "EncounterFormProcessor",
-          "uuid": "cookbook-subform-uuid-placeholder",
-          "referencedForms": [],
-          "encounterType": "dd528487-82a5-4082-9c72-ed246bd49591"
+          ]
         }
-      },
-      "sections": []
+      ]
     },
     {
       "label": "Question-option grab bag",
@@ -887,7 +897,7 @@
                 "rendering": "markdown"
               },
               "value": [
-                "A sweep of the remaining `questionOptions` keys the engine recognises. Each section demonstrates one key."
+                "**A sweep of the remaining `questionOptions` keys the engine recognises.** Each section below demonstrates one key in isolation, so you can see the shape and decide whether it's the right fit for a real form."
               ]
             }
           ]
@@ -938,29 +948,17 @@
           ]
         },
         {
-          "label": "weeksList (gestational weeks helper)",
+          "label": "weeksList (gestational weeks helper, reserved)",
           "isExpanded": "true",
           "questions": [
             {
-              "id": "gestationWeeks",
-              "label": "Gestational age",
-              "type": "obs",
+              "id": "weeksListExplainer",
               "questionOptions": {
-                "rendering": "select",
-                "concept": "1279AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "weeksList": [
-                  4,
-                  8,
-                  12,
-                  16,
-                  20,
-                  24,
-                  28,
-                  32,
-                  36,
-                  40
-                ]
-              }
+                "rendering": "markdown"
+              },
+              "value": [
+                "**`questionOptions.weeksList`** is declared in the engine's schema types as a hint for gestational-age pickers (e.g. `weeksList: [4, 8, 12, ...]`), but no current renderer reads it. Treat it as reserved: setting it has no effect today.\n\nFor gestational age, prefer a `number` rendering with `min` / `max`, or a `select` with explicit `answers` if you want a fixed picker."
+              ]
             }
           ]
         },
@@ -983,7 +981,21 @@
                       "allowFutureDates": "false"
                     }
                   ]
-                }
+                },
+                "answers": [
+                  {
+                    "concept": "121375AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Headache"
+                  },
+                  {
+                    "concept": "121AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Abdominal pain"
+                  },
+                  {
+                    "concept": "122496AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Cough"
+                  }
+                ]
               }
             }
           ]
@@ -999,7 +1011,7 @@
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "159576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "showComment": true,
+                "showComment": "true",
                 "answers": [
                   {
                     "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1106,7 +1118,7 @@
           "questions": [
             {
               "id": "transientWorkingValue",
-              "label": "Scratchpad \u2014 this value is not saved",
+              "label": "Scratchpad — this value is not saved",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
@@ -1160,5 +1172,6 @@
     }
   },
   "defaultPage": "Introduction",
-  "allowUnspecifiedAll": true
+  "allowUnspecifiedAll": true,
+  "referencedForms": []
 }
