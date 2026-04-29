@@ -1158,12 +1158,6 @@
       }
     }
   ],
-  "translations": {
-    "Yes": "Oui",
-    "No": "Non",
-    "Weight (kg)": "Poids (kg)",
-    "Height (cm)": "Taille (cm)"
-  },
   "meta": {
     "programs": {
       "hasProgramFields": true,
