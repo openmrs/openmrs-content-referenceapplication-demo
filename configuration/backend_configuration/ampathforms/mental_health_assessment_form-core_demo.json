@@ -9,7 +9,7 @@
       "sections": [
         {
           "label": "Introduction",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "type": "markdown",
@@ -29,7 +29,7 @@
         },
         {
           "label": "Patient Health Questionnaire-2 (PHQ-2)",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Screening Date",
@@ -53,9 +53,6 @@
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
                   "validators": [
                     {
                       "type": "date",
@@ -113,10 +110,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
+                  "unspecified": "true"
                 }
               ],
               "id": "phq2_1"
@@ -164,10 +158,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
+                  "unspecified": "true"
                 }
               ],
               "id": "phq2_2"
@@ -181,7 +172,7 @@
       "sections": [
         {
           "label": "Further evaluation",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "3. Trouble falling asleep, staying asleep, or sleeping too much",
@@ -226,10 +217,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
+                  "unspecified": "true"
                 }
               ],
               "id": "phq9_3"
@@ -277,10 +265,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
+                  "unspecified": "true"
                 }
               ],
               "id": "phq9_4"
@@ -328,10 +313,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
+                  "unspecified": "true"
                 }
               ],
               "id": "phq9_5"
@@ -379,10 +361,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
+                  "unspecified": "true"
                 }
               ],
               "id": "phq9_6"
@@ -430,10 +409,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
+                  "unspecified": "true"
                 }
               ],
               "id": "phq9_7"
@@ -481,10 +457,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
+                  "unspecified": "true"
                 }
               ],
               "id": "phq9_8"
@@ -532,10 +505,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
+                  "unspecified": "true"
                 }
               ],
               "id": "phq9_9"
@@ -557,7 +527,7 @@
       "sections": [
         {
           "label": "PHQ-9 Scoring",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "PHQ-2 Score (Questions 1-2)",
@@ -617,7 +587,7 @@
       "sections": [
         {
           "label": "Additional Notes",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Clinician Notes",
@@ -625,7 +595,6 @@
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "165095AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "rows": "",
                 "conceptMappings": [
                   {
                     "type": "AMPATH",

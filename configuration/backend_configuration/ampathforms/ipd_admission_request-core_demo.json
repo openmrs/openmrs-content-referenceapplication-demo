@@ -6,7 +6,7 @@
       "sections": [
         {
           "label": "Ward Details",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "type": "obsGroup",
@@ -22,15 +22,13 @@
                   "required": true,
                   "questionOptions": {
                     "rendering": "radio",
-                    "required": true,
                     "concept": "CIEL:169402",
                     "answers": [
                       {
                         "concept": "CIEL:168619"
                       }
                     ]
-                  },
-                  "validators": []
+                  }
                 },
                 {
                   "id": "admitToLocation",
@@ -38,7 +36,6 @@
                   "required": true,
                   "questionOptions": {
                     "rendering": "ui-select-extended",
-                    "required": true,
                     "concept": "CIEL:169403",
                     "datasource": {
                       "name": "location_datasource",
@@ -57,9 +54,7 @@
   ],
   "processor": "EncounterFormProcessor",
   "encounter": "Transfer Request",
-  "encounterType": "Transfer Request",
   "referencedForms": [],
-  "uuid": "xxxx",
   "description": "Create an admission request to an inpatient ward",
   "version": "1.0.0",
   "published": true,

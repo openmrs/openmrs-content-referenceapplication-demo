@@ -11,7 +11,7 @@
       "sections": [
         {
           "label": "SOAP Note",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Subjective Findings",
@@ -67,7 +67,5 @@
     }
   ],
   "processor": "EncounterFormProcessor",
-  "encounterType": "",
-  "referencedForms": [],
-  "uuid": ""
+  "referencedForms": []
 }
