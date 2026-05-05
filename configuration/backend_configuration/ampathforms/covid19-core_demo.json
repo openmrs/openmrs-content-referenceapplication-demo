@@ -6,7 +6,6 @@
   "retired": false,
   "encounter": "Consultation",
   "processor": "EncounterFormProcessor",
-  "uuid": "xxxx",
   "referencedForms": [],
   "pages": [
     {
@@ -14,7 +13,7 @@
       "sections": [
         {
           "label": "Covid 19 Signs and Symptoms",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Covid 19 Set",
@@ -73,7 +72,7 @@
                         "conceptMappings": []
                       },
                       {
-                        "label": "Diarrea, Vomiting or Abdominal pain",
+                        "label": "Diarrhea, Vomiting or Abdominal pain",
                         "concept": "87b3f6a1-6d79-4923-9485-200dfd937782",
                         "conceptMappings": []
                       },
@@ -111,7 +110,7 @@
       "sections": [
         {
           "label": "Covid 19 Test",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Covid 19 Test",

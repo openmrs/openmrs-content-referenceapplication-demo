@@ -104,7 +104,7 @@
       "sections": [
         {
           "label": "Complaints and History of complaints",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "History of Presenting Complaints",
@@ -114,8 +114,6 @@
                 "concept": "1390AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "repeating"
               },
-              "validators": [],
-              "hide": {},
               "questions": [
                 {
                   "label": "Complaint",
@@ -428,7 +426,6 @@
                     "concept": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "rendering": "textarea"
                   },
-                  "validators": [],
                   "hide": {
                     "hideWhenExpression": "Complaint !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -459,8 +456,7 @@
                     "calculate": {
                       "calculateExpression": "calcTimeDifference(complaintsOnset, 'd')"
                     }
-                  },
-                  "validators": []
+                  }
                 }
               ]
             },
@@ -471,17 +467,13 @@
               "questionOptions": {
                 "concept": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "textarea"
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": ""
               }
             }
           ]
         },
         {
           "label": "Past Medication History",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Past medical & Surgical history narrative",
@@ -491,16 +483,13 @@
                 "rendering": "textarea",
                 "concept": "160221AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "answers": []
-              },
-              "hide": {
-                "hideWhenExpression": ""
               }
             }
           ]
         },
         {
           "label": "Allergies & Adverse Drug Reactions ",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Allergies",
@@ -534,9 +523,6 @@
                     "label": "Unknown"
                   }
                 ]
-              },
-              "hide": {
-                "hideWhenExpression": ""
               },
               "historicalExpression": "_.isEmpty(HD.getObject('prevEnc').getValue('162871AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')) ? undefined : HD.getObject('prevEnc').getValue('162871AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
             },
@@ -767,7 +753,7 @@
         },
         {
           "label": "Family History",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Family History Narrative",
@@ -776,16 +762,13 @@
               "questionOptions": {
                 "concept": "160618AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "textarea"
-              },
-              "hide": {
-                "hideWhenExpression": ""
               }
             }
           ]
         },
         {
           "label": "Sexual History",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "HIV Status",
@@ -832,7 +815,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "age < 3"
               },
@@ -856,7 +838,6 @@
                   }
                 ]
               },
-              "validators": [],
               "alert": {
                 "alertWhenExpression": "myValue > 12",
                 "message": "Client may be eligible for a HIV test if there are risk factors"
@@ -937,7 +918,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "age < 14"
               }
@@ -982,7 +962,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "isEmpty(sexPartner) || sexPartner !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || age < 14"
               }
@@ -1011,7 +990,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "isEmpty(sexPartner) || sexPartner !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || age < 14"
               }
@@ -1020,7 +998,7 @@
         },
         {
           "label": "Reproductive History",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Last Menstrual Period",
@@ -1117,7 +1095,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "isEmpty(pregnancy) || sex !== 'F' && (age < 14 || age > 49) || pregnancy === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               },
@@ -1205,7 +1182,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "!arrayContains(['965AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA','1360AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'], fPlanning) || (age < 14 || age > 49) || sex !== 'F'"
               }
@@ -1228,7 +1204,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "!arrayContains(['965AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA','1360AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'], fPlanning) || (age < 14 || age > 49) || sex !== 'M'"
               },
@@ -1238,7 +1213,7 @@
         },
         {
           "label": "Social History",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "History of Substance Use (Alcohol, Tobacco, Drugs)",
@@ -1445,7 +1420,6 @@
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "isEmpty(substanceUse) || substanceUse !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || age < 10"
               },
@@ -1468,9 +1442,6 @@
                     "label": "No"
                   }
                 ]
-              },
-              "hide": {
-                "hideWhenExpression": ""
               }
             },
             {
@@ -1480,17 +1451,13 @@
               "questionOptions": {
                 "concept": "61675c28-e628-4173-bc65-d5e0df78a6da",
                 "rendering": "textarea"
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": ""
               }
             }
           ]
         },
         {
           "label": "Immunization History",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Immunizations",
@@ -1511,7 +1478,7 @@
       "sections": [
         {
           "label": "General Examination",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "General examination findings:",
@@ -1587,11 +1554,7 @@
                     "disableWhenExpression": "myValue === '1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 ]
-              },
-              "hide": {
-                "hideWhenExpression": ""
-              },
-              "validators": []
+              }
             },
             {
               "label": "General Examination Notes",
@@ -1600,17 +1563,13 @@
               "questionOptions": {
                 "concept": "163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "textarea"
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": ""
               }
             }
           ]
         },
         {
           "label": "Systemic Examination",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Physical exam outcome",
@@ -1630,9 +1589,6 @@
                     "label": "Abnormal"
                   }
                 ]
-              },
-              "hide": {
-                "hideWhenExpression": ""
               }
             },
             {
@@ -2325,7 +2281,7 @@
         },
         {
           "label": "Laboratory and Diagnostic Tests",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Order Basket Launcher",
@@ -2335,8 +2291,7 @@
                 "rendering": "workspace-launcher",
                 "buttonLabel": "Add Lab Orders",
                 "workspaceName": "add-lab-order"
-              },
-              "hide": {}
+              }
             },
             {
               "label": "Upload File or Image",
@@ -2371,7 +2326,7 @@
       "sections": [
         {
           "label": "Diagnosis & Problem List",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Visit Diagnosis",
@@ -2381,8 +2336,6 @@
                 "concept": "159947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "repeating"
               },
-              "validators": [],
-              "hide": {},
               "questions": [
                 {
                   "label": "Diagnosis",
@@ -2418,8 +2371,7 @@
                         "label": "Final diagnosis"
                       }
                     ]
-                  },
-                  "validators": []
+                  }
                 },
                 {
                   "label": "Diagnosis order",
@@ -2452,8 +2404,7 @@
                 "concept": "161602AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [],
                 "answers": []
-              },
-              "validators": []
+              }
             },
             {
               "label": "Problem List",
@@ -2474,7 +2425,7 @@
       "sections": [
         {
           "label": "Treatment/Management Plan",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Order Basket Launcher",
@@ -2484,16 +2435,13 @@
                 "rendering": "workspace-launcher",
                 "buttonLabel": "+ Orders",
                 "workspaceName": "order-basket"
-              },
-              "hide": {
-                "hideWhenExpression": ""
               }
             }
           ]
         },
         {
           "label": "Referrals",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Referrals ordered",
@@ -2654,8 +2602,7 @@
                     "label": "Other non-coded"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Reason for referral (text)",
@@ -2667,14 +2614,13 @@
                 "concept": "164359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [],
                 "answers": []
-              },
-              "validators": []
+              }
             }
           ]
         },
         {
           "label": "Follow-up",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Follow-up need?",
@@ -2695,8 +2641,7 @@
                     "label": "No"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Appointments",
@@ -2720,7 +2665,7 @@
       "sections": [
         {
           "label": "General Note",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Notes",
@@ -2732,8 +2677,7 @@
                 "concept": "162169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [],
                 "answers": []
-              },
-              "validators": []
+              }
             }
           ]
         }

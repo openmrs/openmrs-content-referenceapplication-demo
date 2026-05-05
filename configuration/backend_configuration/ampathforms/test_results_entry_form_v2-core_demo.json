@@ -10,7 +10,7 @@
       "sections": [
         {
           "label": "Complete Blood Count",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "White Blood Cells (WBC) (10^3/uL)",
@@ -454,8 +454,7 @@
                   }
                 ],
                 "answers": []
-              },
-              "validators": []
+              }
             },
             {
               "label": "Combined % of monocytes, eosinophils and basophils (%)",
@@ -479,8 +478,7 @@
                   }
                 ],
                 "answers": []
-              },
-              "validators": []
+              }
             }
           ]
         }
@@ -491,7 +489,7 @@
       "sections": [
         {
           "label": "Chemistry Results",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Alkaline Phosphatase (U/L)",
@@ -539,8 +537,7 @@
                   }
                 ],
                 "answers": []
-              },
-              "validators": []
+              }
             },
             {
               "label": "Amylase (IU/L)",
@@ -589,8 +586,7 @@
                   }
                 ],
                 "answers": []
-              },
-              "validators": []
+              }
             },
             {
               "label": "BUN (mmol/L) - Blood Urea Nitrogen",
@@ -666,8 +662,7 @@
                   }
                 ],
                 "answers": []
-              },
-              "validators": []
+              }
             },
             {
               "label": "Post-Prandial Blood Glucose (mg/dL)",
@@ -695,8 +690,7 @@
                   }
                 ],
                 "answers": []
-              },
-              "validators": []
+              }
             },
             {
               "label": "Serum Albumin (g/dL)",
@@ -1277,8 +1271,7 @@
                   }
                 ],
                 "answers": []
-              },
-              "validators": []
+              }
             }
           ]
         }
@@ -1289,7 +1282,7 @@
       "sections": [
         {
           "label": "Urine",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Urine Culture and Sensitivity (C&S)",
@@ -1327,8 +1320,7 @@
                   }
                 ],
                 "answers": []
-              },
-              "validators": []
+              }
             },
             {
               "label": "Urine Pregnancy Test",
@@ -1383,8 +1375,7 @@
                     "label": "Poor sample quality"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Urine protein (dip stick)",
@@ -1446,8 +1437,7 @@
                     "label": "Positive"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Urine Bacteriuria Test",
@@ -1491,8 +1481,7 @@
                     "label": "Unknown"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Erythrocytes presence in urine sediment by light microscopy test",
@@ -1528,8 +1517,7 @@
                     "label": "High"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Leukocytes presence in urine sediment by light microscopy",
@@ -1579,8 +1567,7 @@
                     "label": "High"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Epithelial casts presence in urine sediment by light microscopy test",
@@ -1629,8 +1616,7 @@
                     "label": "Three plus"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Yeast presence in urine sediment by light microscopy",
@@ -1674,8 +1660,7 @@
                     "label": "Three plus"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Yeast hyphae presence in urine sediment by light microscopy test",
@@ -1719,8 +1704,7 @@
                     "label": "Three plus"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Spore presence in urine test",
@@ -1759,8 +1743,7 @@
                     "label": "Three plus"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Trichomonas vaginalis presence in urine sediment by light microscopy",
@@ -1800,8 +1783,7 @@
                     "label": "High"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Crystals type in urine sediment by light microscopy test",
@@ -1890,14 +1872,13 @@
                     "label": "Urinary Cast, Hyaline"
                   }
                 ]
-              },
-              "validators": []
+              }
             }
           ]
         },
         {
           "label": "Stool",
-          "isExpanded": "true",
+          "isExpanded": true,
           "questions": [
             {
               "label": "Stool culture (bacterial)",
@@ -1925,8 +1906,7 @@
                   }
                 ],
                 "answers": []
-              },
-              "validators": []
+              }
             },
             {
               "label": "Stool Exam",
@@ -2022,8 +2002,7 @@
                   }
                 ],
                 "answers": []
-              },
-              "validators": []
+              }
             },
             {
               "label": "Kinyoun's stain for coccidians",
@@ -2051,8 +2030,7 @@
                   }
                 ],
                 "answers": []
-              },
-              "validators": []
+              }
             },
             {
               "label": "Stool fat test, semi-quantitative",
@@ -2105,8 +2083,7 @@
                     "label": "Four plus"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Stool test for reducing substance",
@@ -2143,8 +2120,7 @@
                     "label": "Positive"
                   }
                 ]
-              },
-              "validators": []
+              }
             },
             {
               "label": "Fecal Occult Blood Test",
@@ -2190,8 +2166,7 @@
                     "label": "Positive"
                   }
                 ]
-              },
-              "validators": []
+              }
             }
           ]
         }
@@ -2199,7 +2174,5 @@
     }
   ],
   "processor": "EncounterFormProcessor",
-  "encounterType": "",
-  "referencedForms": [],
-  "uuid": ""
+  "referencedForms": []
 }

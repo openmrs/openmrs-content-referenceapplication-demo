@@ -1,6 +1,5 @@
 {
     "name" : "Test Form 1",
-    "description" : "Test Form 1 Description",
     "version" : "1",
     "published" : true,
     "retired" : false,
@@ -11,7 +10,7 @@
             "sections" : [
                 {
                     "label" : "Section 1",
-                    "isExpanded" : "true",
+                    "isExpanded" : true,
                     "questions" : [
                         {
                             "label" : "Height",
@@ -19,9 +18,6 @@
                             "questionOptions" : {
                                 "rendering" : "number",
                                 "concept" : "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                                "max" : "",
-                                "min" : "",
-                                "showDate" : "",
                                 "conceptMappings" : [
                                     {
                                         "type" : "CIEL",
