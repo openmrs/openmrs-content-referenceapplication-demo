@@ -1,0 +1,13 @@
+Uuid,Void/Retire,Name,Description
+61b05bd4-1b0a-440e-9e7b-fd3314015c1b,,Diagnostic,Procedures performed to identify evaluate or monitor a medical condition.
+d19ebec8-48c4-4c61-8156-a3925ef749c4,,Surgical,Invasive or operative procedures performed to treat or correct a condition.
+cfd229eb-f79d-407c-8e11-f62b6ab94825,,Laboratory,Procedures involving specimen collection testing or laboratory analysis.
+b8bd2919-21c2-4f44-b5ea-8b40a124e33f,,Imaging,Procedures that generate medical images for diagnosis or monitoring.
+2fd066f8-c6fa-4612-adbc-327bdff99fa4,,Therapeutic,Procedures performed to treat manage or improve a patient's condition.
+41a2c62d-99d6-453f-966d-624736fc1088,,Nursing,Routine clinical care procedures commonly performed by nursing or bedside staff.
+720b7b8d-3a02-47cb-9653-5901cb99f65b,,Dental,Procedures related to oral health teeth and dental care.
+16adc1d9-c907-472b-b6c6-e8a21f7ac025,,Obstetric,Procedures related to pregnancy childbirth and reproductive health.
+7a063c89-1aa3-478f-b991-ad3cdc6edf6b,,Emergency,Urgent or life-saving procedures performed in emergency situations.
+16c2b343-6bcf-49d2-967f-b1872011002d,,Vaccination,Procedures involving the administration of vaccines or immunizations.
+11f3a801-f6e2-4fca-bd5b-96ca9a56ea32,,Referral,Procedures or services performed outside the current facility or by external providers.
+ba8369fa-49db-4cc0-a730-9ab96eca75e1,,Other,Procedures that do not fit into the available categories.
