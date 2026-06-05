@@ -13,6 +13,6 @@
     "report.encounterPrinting.header.visitAttributes": "false",
     "report.encounterPrinting.header.visitAttributeTypes": "",
     "report.encounterPrinting.footer.customText": "",
-    "report.encounterPrinting.stylesheet": "defaultEncounterFormFopStylesheet.xsl",
+    "report.encounterPrinting.stylesheetPath": "printing/defaultEncounterFormFopStylesheet.xsl",
     "report.encounterPrinting.logopath": ""
 }
