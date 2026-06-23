@@ -30,3 +30,4 @@ jobs:
         id: build_with_maven
         run: |
           mvn clean verify --batch-mode --file pom.xml
+
