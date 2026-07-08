@@ -15,8 +15,7 @@ jobs:
   build:
     uses: openmrs/openmrs-contrib-gha-workflows/.github/workflows/build-maven.yml@main
     with:
-      java_versions: "[8]"
-      main_java_version: 8
+      java_versions: 8
     secrets:
       MAVEN_REPO_USERNAME: ${{ secrets.MAVEN_REPO_USERNAME }}
       MAVEN_REPO_API_KEY: ${{ secrets.MAVEN_REPO_API_KEY }}
