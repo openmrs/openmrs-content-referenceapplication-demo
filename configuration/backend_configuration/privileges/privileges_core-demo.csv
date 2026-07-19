@@ -34,3 +34,6 @@ dfc8b5f0-c736-4bc0-8f23-427f0d9c7e7f,Manage Cohort Definitions,Add/Edit/Remove C
 0a12b76e-2175-4eb7-af0b-498129ea1cac,Run Reports,Schedule the running of a report,
 a98c5b27-8d44-42b6-9b84-626cbcc5a227,Manage OrderTemplates,Add/Edit/Remove Order Templates,
 b87f7365-f833-4000-8e7b-101e317fd89c,View OrderTemplates,View Order Templates,
+5155da75-dc85-4db7-a6ba-6ed0d238d4d3,App: Service Queues Clinic Administrator,Grants access to the Service Queues clinic-wide monitoring view,
+80c2bcc2-778a-4654-b1fd-eb2ff2dfe14e,App: Service Queues Clerk,Grants access to the Service Queues single-location waiting view for clerks,
+a1b9a61f-c0bb-4d7d-8347-6766c7ee51de,App: Service Queues Clinician,Grants access to the Service Queues single-location waiting view for clinicians,
