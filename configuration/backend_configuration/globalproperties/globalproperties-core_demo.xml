@@ -23,5 +23,10 @@
             <property>queue.statusConceptSetName</property>
             <value>d60ffa60-fca6-4c60-aea9-a79469ae65c7</value>
         </globalProperty>
+
+        <globalProperty>
+            <property>attachments.allowedFileExtensions</property>
+            <value>jpeg,jpg,png,pdf</value>
+        </globalProperty>
     </globalProperties>
 </config>
