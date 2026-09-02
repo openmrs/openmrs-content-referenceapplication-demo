@@ -1,5 +1,4 @@
 Uuid,Void/Retire,Name,Description,Parent,Tag|Login Location,Tag|Visit Location,Tag|Facility Location,Tag|Queue Location,Tag|Admission Location,Tag|Appointment Location,Tag|Transfer Location,Address 1,Address 2,Address 3,Address 4,Address 5,Address 6,City/Village,County/District,State/Province,Postal Code,Country,_order:1000
-8d6c993e-c2cc-11de-8d13-0010c6dffd0f,,Unknown Location,Unknown Location,,,,,,,,,,,,,,,,,,,,
 f47ac10b-58cc-4372-a567-0e02b2c3d479,,Ubuntu Hospital,Ubuntu Hospital,,,TRUE,,,,,,,,,,,,,,,,,
 44c3efb0-2583-4c80-a79e-1f756a03c0a1,,Outpatient Clinic,Outpatient Clinic,Ubuntu Hospital,TRUE,,TRUE,TRUE,,TRUE,,,,,,,,,,,,,
 ba685651-ed3b-4e63-9b35-78893060758a,,Inpatient Ward,Inpatient Ward,Ubuntu Hospital,TRUE,,,,TRUE,,TRUE,,,,,,,,,,,,
