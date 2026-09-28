@@ -1,0 +1,59 @@
+{
+  "name": "Form Engine Cookbook Library",
+  "description": "Shared sections referenced by the Form Engine Cookbook. Not for clinical use.",
+  "version": "1",
+  "published": false,
+  "retired": false,
+  "encounter": "Consultation",
+  "processor": "EncounterFormProcessor",
+  "referencedForms": [],
+  "pages": [
+    {
+      "label": "Vitals",
+      "sections": [
+        {
+          "label": "Vitals snippet",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "libWeight",
+              "label": "Weight (kg)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "0",
+                "max": "250",
+                "step": 0.1
+              }
+            },
+            {
+              "id": "libHeight",
+              "label": "Height (cm)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "10",
+                "max": "272",
+                "step": 0.1
+              }
+            },
+            {
+              "id": "libTemperature",
+              "label": "Temperature (\u00b0C)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "25",
+                "max": "43",
+                "step": 0.1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
