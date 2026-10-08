@@ -6,7 +6,7 @@
         </globalProperty>
         <globalProperty>
             <property>billing.currencySymbol</property>
-            <value>KES</value>
+            <value>UGX</value>
         </globalProperty>
     </globalProperties>
 </config>
