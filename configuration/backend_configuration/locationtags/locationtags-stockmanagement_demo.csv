@@ -2,3 +2,4 @@ Uuid,Void/Retire,Name,Description
 e539ebca-2899-11ed-bdcb-507b9dea1806,,Main Store,A location which is the main facility stock holding area.
 89a80c4d-2899-11ed-bdcb-507b9dea1806,,Main Pharmacy,Main pharmacy location.
 fe7c970f-2aba-11ed-ba4a-507b9dea1806,,Dispensary,A dispensary.
+0b5f3c1e-6d2a-4f8b-9e7c-3a1d5b9f2c64,,Sub Store,"A store below the main store that holds stock, such as a ward or satellite store."
